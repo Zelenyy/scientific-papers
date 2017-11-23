@@ -1,0 +1,203 @@
+\documentclass{webofc}
+\usepackage[varg]{txfonts}
+% review
+%\usepackage[textwidth=120]{todonotes}
+%\usepackage{color}
+\usepackage{subcaption}
+
+\begin{document}
+
+\title{Turchin's method of statistical regularization}
+%
+\author{\firstname{Mikhail} \lastname{Zelenyi}\inst{1,2}\fnsep\thanks{\email{mihail.zelenyy@phystech.edu}} \and
+    \firstname{Maria} \lastname{Polyakova}\inst{1,2} 
+    }
+%
+\institute{Institute for Nuclear Research RAS
+    \and
+    Moscow Institute of Physics and Technology
+}
+\abstract{%
+    During analysis of experimental data, one usually needs to restore a signal after it has been convoluted with some kind of apparatus function. According to Hadamard's definition this problem is ill-posed  and requires regularization to provide sensible results. In this article we consider the Turchin's method of statistical regularization based on the Bayesian approach to the regularization strategy.
+}
+%
+\maketitle
+
+\section{Introduction}
+
+\subsection{Problem}
+
+Consider the usual situation: detector measures a signal ($\varphi(x)$) and produces observed data ($f(y)$) via convolution with its own apparatus function ($K(x,y)$). The resulting observed data $f(y)$ contains a random noise factor both from initial statistical uncertainty of $\varphi(x)$ and additional noise from measurement procedure. In order to reconstruct initial signal, one needs to solve Fredholm equation:
+\begin{equation}
+\label{eq-01}
+    f(y) = \int dx~ K(x,y)\varphi(x),
+\end{equation}
+but this equation is ill-possed: a small error in the measurement of $f(y)$ leads to big instability of $\varphi(x)$. 
+
+\subsection{Solution}
+
+Solving such ill-possed problems requires additional operation called regularization. Regularization is a process of introducing additional information for transition from ill-possed problem to well-possed problem. The idea of statistical regularization~\cite{Turchin, Turovceva} is to look on the problem from the point of view of Bayessian statistics approach: unknown statistical value $\varphi(x)$ could be reconstructed using  measured value $f(y)$, the model ($K(x,y)$) and some prior information about $\varphi(x)$ behavior. Main features of statistical regularization:
+\begin{itemize}
+    \item Based on Bayesian approach and decision theory (choice theory).
+    \item Consider different a prior information: smoothness, non-negatives, etc.
+    \item Define errors of obtained solution.
+    \item Don't contain undefined parameter.
+\end{itemize}
+
+\section{Description of statistical regularization's method}
+
+\subsection{Strategy}\label{sec:theory:strat}
+
+Consider eq. ~\ref{eq-01} in operator form:
+\begin{equation}
+	\label{eq-02}
+    \hat{K}\varphi = f.
+\end{equation}
+
+According to statistical decision theory (\cite{james2006statistical}), one can define a reconstruction strategy  $\hat{\varphi} = \hat{S}[f]$, which uses a prior information. Good strategy minimize an impact of prior information (which could be wrong). That could be achieved by introducing the loss-function:
+\begin{equation*}
+	L(\varphi,\hat{S}[f]) = ||\varphi-\hat{S}[f])||_{L_2},
+\end{equation*}
+
+For this loss-function:
+\begin{equation}
+	\label{eq:opt}
+	\hat{S}[f] = E[\varphi|f] = \int \varphi P(\varphi|f)d\varphi
+\end{equation}
+
+Strategy depend on a prior information $P(\varphi)$:
+\begin{equation*}
+	P(\varphi|f)= \frac{P(\varphi)P(f|\varphi)}{\int d\varphi P(\varphi)P(f|\varphi)} 
+\end{equation*}
+
+Errors of solution:
+\begin{equation*}
+	D(x_1,x_2)  = E[\varphi(x_1) - \hat{S}[f](x_1)][\varphi(x_2) - \hat{S}[f](x_2)]
+\end{equation*}
+Let us consider what a prior information can we use? 
+
+\subsection{A prior information}\label{sec:theory:aprior}
+
+A general case of prior information is assumption about function smoothness. The applications of such prior information is done in three stages:
+\begin{enumerate}
+\item Minimize additional Shannon's information:
+	\begin{equation*}
+		I[P(\varphi)] = \int \ln{P(\varphi)} P(\varphi) d\varphi \to min
+	\end{equation*}
+\item Normalize probability density:
+	\begin{equation*}
+		\int P(\varphi) d\varphi = 1
+	\end{equation*}   
+\item Analyze information about smoothness of function $\varphi(x)$:
+	\begin{equation}
+		\label{eq-smoothness}
+		\int \langle \varphi,\hat{\Omega}\varphi \rangle P(\varphi) d\varphi = \omega,
+	\end{equation}
+where $\omega$ - required level of smoothness,   $\hat{\Omega}$ - operator of smoothness (for example, $\hat{\Omega}=|\frac{d^2}{dx^2}\left\rangle\right\langle\frac{d^2}{dx^2}|$).
+\end{enumerate}
+
+The resulting prior probability density for the Gaussian random process:
+\begin{equation}
+	P_{\alpha}(\vec{\varphi})  = \frac{\alpha^{Rg(\Omega)/2}\det\Omega^{1/2}}{(2\pi)^{N/2}} 
+    \exp\left(-\frac{1}{2}(\vec{\varphi},\alpha\Omega\vec{\varphi})\right),
+\end{equation}
+where  $\alpha = \alpha(\omega)$ - parameter of smoothness.
+The prior information depends on $\alpha$-smoothness parameter. This parameter could be estimated in a few different ways:
+\begin{enumerate}
+\item Select manually using known smoothness. This is rare probability.
+\item Use most probable parameter: $\alpha^* = \max P(\alpha|f).$
+\item Use a prior information about smoothness: 
+  \begin{equation}\label{eq:varAposteriorAlpha}
+      P(\varphi)  = \int P_{\alpha}(\varphi) P(\alpha)~d\alpha
+  \end{equation}
+\item Use a posterior information about smoothness: 
+  \begin{equation}\label{eq:solveAposteriorAlpha}
+      \hat{S}[f] = \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f),
+  \end{equation} 
+\end{enumerate}
+
+In fact, methods 3 and 4 are equivalent.
+
+\subsection{Additional prior information}
+
+In eq. ~\ref{eq-smoothness} one can use not only smoothness operator, but also different or even multiple different conditions: 
+\begin{equation*}
+    P_{\alpha\beta}(\varphi) \sim  \det \left|\alpha\Omega_1 +\beta\Omega_2\right|\exp\left(-\frac{1}{2} (\vec{\varphi},(\alpha\Omega_1 + \beta\Omega_2)\vec{\varphi})\right)
+\end{equation*}
+
+This features allow to combine different types of parametric prior information. Also one can use non-parametric prior. For example, information about non-negativity:
+\begin{equation*}
+    P(\varphi) \sim P_{\alpha}(\varphi)P(\varphi(x) > 0)
+\end{equation*}
+
+\subsection{Discretization}
+
+In order to find numerical solution, one need to go from continuous functions in eq. ~\ref{eq-02} to discreet matrix form:
+\begin{equation}\label{eq:algebr}
+	\begin{gathered}
+      \varphi(x) = \sum \limits_n \varphi_n T_n(x),\\
+      K_{mn} = (\hat{K}T_n(x))(y_m),\\
+      \Omega_{ij} = \int\limits_a^b \left(\frac{d^pT_i(x)}{dx}\right)\left(\frac{d^pT_j(x)}{dx}\right)dx,\\
+      D[\varphi(x)] = D[\sum \limits_n \varphi_n T_n(x)] = \sum\limits_{i,j} \varphi_i\varphi_j cov(T_i(x), T_j(x)),\\
+      \vec{f} = K\vec{\varphi},
+    \end{gathered}
+\end{equation}
+where $T_n(x)$ - some basis in function space. For example, cubic spline, Fourier series and Legendre polynomials.
+
+\subsection{Solution for Gaussian distributed noise}
+
+The most common experimental case of noise distribution is normal (or Gaussian) distribution:
+\begin{equation}	\label{eq:gaussP}
+	P\left(\vec{f}|\vec{\varphi}\right) = \frac{1}{(2\pi)^{M/2}|\Sigma|^{1/2}} 
+    \exp\left(-\frac{1}{2}(\vec{f} - K\vec{\varphi})^T\Sigma^{-1}(\vec{f} - K\vec{\varphi})\right)
+\end{equation}
+Using  the most probable $\alpha$, one can get the best solution in a simple form.
+\begin{equation} \label{eq:analit_solv}
+	\hat{S}_{\alpha}[\vec{f}] = (K^T\Sigma^{-1}K+\alpha\Omega)^{-1}K^T\Sigma^{-1T}\vec{f},
+\end{equation}
+\begin{equation} \label{eq:analit_var}
+	\texttt{cov}_{\alpha}(\varphi_m, \varphi_n) = ||(K^T\Sigma^{-1}K+\alpha^*\Omega)^{-1}||_{mn}
+\end{equation}
+If we want to get more accurate solution, we should average solution over a posterior probability, which is calculated using Bayes' rule: 
+\begin{equation}
+	\label{eq:alphaaposter}
+	P(\alpha|\vec{f}) = C \alpha^{\frac{Rg(\Omega)}{2}}\sqrt{|(B+\alpha\Omega)^{-1}|}\exp(-\frac{1}{2}b^{T}B^{-1}b)\exp(\frac{1}{2}b^{T}(B+\alpha\Omega)^{-1}b),
+\end{equation}
+where norming factor $C$  doesn't depend on $\alpha$. This formula allows to take integrals (\ref{eq:solveAposteriorAlpha}) and (\ref{eq:varAposteriorAlpha}) numerically.
+
+\section{An example}
+
+\begin{figure}[ht!]
+	\begin{subfigure}[b]{0.5\textwidth}
+    	\includegraphics[width=0.95\linewidth]{image/fig01}
+        \caption{}
+        \label{pic-01-a}
+    \end{subfigure}
+	~
+    \begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=0.95\textwidth]{image/fig02}
+        \caption{}
+        \label{pic-01-b}
+    \end{subfigure}
+    \caption{The spectrum of electron scattering (Troitsk $\nu$-mass data)}
+\end{figure}
+
+As an example of method application we analyzed data from \cite{Abdurashitov:2016nrv} using statistical regularization. In this experiment gaseous hydrogen (and tritium)  was irradiated by electrons with energies of about 20 keV from electron gun. Troitsk nu-mass spectrometer on the other side of gas volume registers the integral electron spectrum (like at fig~~\ref{pic-01-a}) with relative resolution of about $10^{-5}$. In previous works (\cite{Aseev2000} and \cite{Abdurashitov:2016nrv}) the differential cross-section of scattering electrons on $H2$ molecules was reconstructed using fitting procedure against some 5 or 6 parameter shape. This analysis had three major flaws:
+\begin{itemize}
+\item The parametric shape for fit does not have sufficient physics basis and therefore result is subjective in respect to the parametrization.
+\item The chosen parametrization has too many parameters and produces very tight correlations between these parameters, making the fit results instable.
+\item There is not clean way to determine uncertainties for any given point of reconstructed function.
+\end{itemize}
+
+Turchin's regularization allows to avoid all these problems and produces clean model-independent result with uncertainties. The result of regularization and previously published fit are presented at Fig.~\ref{pic-01-b}. The regularization reconstruction is in good agreement with fitted curve. Also there are two very small peaks picture shows two additional peaks at 25 and 30 eV.The peak on 25 eV is known to be produced by double scattering events. Peak on 30 eV is previously unknown. It could be either statistical anomaly (errors are quite large in this point), or possibly point to existence of additional dissociative scattering.
+
+\section{Conclusion}
+
+Turchin's statistical regularization is a very powerful tool to solve ill-posed inversed problems. It provides a flexible way to introduce almost any kind of prior knowledge into reconstruction problem. Also it opens a new way to solve some problems which previously were solved only by direct approach.
+
+This work is supported by the Ministry of Education and Science of the Russian Federation under the contract No. 3.3008.2017/PP.
+
+    
+\bibliography{references}{}        
+ 
+\end{document}

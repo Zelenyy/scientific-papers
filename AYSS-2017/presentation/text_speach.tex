@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+
+%\usepackage[russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{indentfirst}
+% \usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{epigraph}
+
+
+\begin{document}
+
+\paragraph{1 slide}
+Good afternoon. My name is Mikhail Zelenyy and today I would like to tell you about Turchin's statistical regularization. 
+
+\paragraph{2 slide}
+Firstly, let's imagine typical situation: detector measures observed signal and convolves with its own apparatus function, and certainly, nature append noise. In result, we get the experimental data with its error, which we must process. For processing of experimental data we could solve Fredholm equation.
+\paragraph{3 slide}
+Let's consider on the integral form of Fredholm equation. We use this rule of discretization for transition to matrix form. We solve matrix equation using methods of least squares.
+\paragraph{4 slide}
+For demonstration, we have made numerical simulation. We took this observed signal and this apparatus function, which is differential Gauss kernel. Our experimental data is the result of convolution and we append gauss noise to its. Let's deconvolve this data.  
+\paragraph{5 slide}
+Using least squares, we get rubbish. For comparison, method of statistical regularization find solution correctly. Let's see why.
+
+\paragraph{6 slide}
+If we want to solve Fredholm equation for data processing, we face a problem. Fredholm equation is ill-possed, and matrix form of kernel function   can be ill-condition. In result, small error of experimental data leads to impossibility of correctly deconvolution.\\
+This problem can be solved, if we use additional information, which make our problem well-possed. 
+This approach is named a regularization.
+\paragraph{7 slide}
+Statistical regularization proposal to look on the problem from view's point of Bayessian approach: our unknown observed signal is  a random variable, and we want to estimate its by output signal. Or in term of decision theory, we want  to choice the best solution based on available information.
+Statistical regularization use different type of prior information and which is very important allow to define errors of obtained solution. Also it gives technique for definition using parameter. 
+
+\paragraph{8 slide}
+For choosing best solution, we need a good strategy which can minimize loss-function. This strategy gives a solution depending on a prior information and gives error of solution. But, what is a prior information can we use? 
+\paragraph{9 slide}
+We propose to use information about smoothness. For this, we define three conditional on prior probability density:
+At first, we minimize additional Shannon's information, at second we normalize probability density, at third, we consider information about smoothness of function $\varphi(x)$.
+\paragraph{9 slide}
+In result, we get that a prior probability density is gauss random process. But our prior information depend on $\alpha$-smoothness parameter. Let's see how we can estimate this parameter.
+\paragraph{10 slide}
+At first, we can select manually.\\
+At second, we can find the most probable parameter.\\
+At third, we can use Bayesian approach and a prior information about $\alpha$. For example, we can think that all $\alpha$ have equal probability.\\
+At fourths, we can use a posterior probability to estimate $\alpha$.\\
+Draw attention, that two last methods is equivalent.
+\paragraph{11 slide}   
+let's consider separately particular case, when experimental error is distributed by Gauss. Then, using  the most probable $\alpha$, we can get the best solution in simple form.
+\paragraph{12 slide}   
+For example, we applied statistical regularization for integral spectrum of electron scattering. In original paper, for getting differential spectrum, difficult fitting algorithm was used, which gave spectrum drawing red lines.  Blue lines is result of statistical regularization. Let's consider on peak of double scattering in more details .
+\paragraph{13 slide} 
+Fit can find only those physics which using for definition form of function, and lose any another physics. Statistical regularization requires less information, also find peak of double scattering, and furthermore find hint at next scattering peak.
+\paragraph{14 slide}
+Thank you for your attention. If you have any question, I answer them.
+\paragraph{16 slide}       
+For example, in Tikhonov regularization we can replace initial equation by approximation equation and its solution tend to solution of initial equation for some regularization parameter  $\alpha$. But this approach have several disadvantages: correct $\alpha$ exist, but unknown, and error of solution is unknown.
+
+
+\end{document}
