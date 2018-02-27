@@ -39,16 +39,18 @@ but this equation is ill-possed: a small error in the measurement of $f(y)$ lead
 Solving such ill-possed problems requires additional operation called regularization. Regularization is a process of introducing additional information for transition from ill-possed problem to well-possed problem. The idea of statistical regularization~\cite{Turchin, Turovceva} is to look on the problem from the point of view of Bayessian statistics approach: unknown statistical value $\varphi(x)$ could be reconstructed using  measured value $f(y)$, the model ($K(x,y)$) and some prior information about $\varphi(x)$ behavior. Main features of statistical regularization:
 \begin{itemize}
     \item Based on Bayesian approach and decision theory (choice theory).
-    \item Consider different a prior information: smoothness, non-negatives, etc.
-    \item Define errors of obtained solution.
-    \item Don't contain undefined parameter.
+    \item It's able to accommodate various forms of prior information, such as
+      smoothness, constraints on boundary conditions, non-negativity, etc.
+    \item It allows estimation of errors for reconstructed function $\phi$
+    \item Gives clear data-driven procedure for choice of regularization
+      strength.
 \end{itemize}
 
 \section{Description of statistical regularization's method}
 
 \subsection{Strategy}\label{sec:theory:strat}
 
-Consider eq. ~\ref{eq-01} in operator form:
+Consider eq.~\ref{eq-01} in operator form:
 \begin{equation}
 	\label{eq-02}
     \hat{K}\varphi = f.
@@ -120,7 +122,7 @@ In fact, methods 3 and 4 are equivalent.
 
 \subsection{Additional prior information}
 
-In eq. ~\ref{eq-smoothness} one can use not only smoothness operator, but also different or even multiple different conditions: 
+In eq.~\ref{eq-smoothness} one can use not only smoothness operator, but also different or even multiple different conditions: 
 \begin{equation*}
     P_{\alpha\beta}(\varphi) \sim  \det \left|\alpha\Omega_1 +\beta\Omega_2\right|\exp\left(-\frac{1}{2} (\vec{\varphi},(\alpha\Omega_1 + \beta\Omega_2)\vec{\varphi})\right)
 \end{equation*}
@@ -132,7 +134,7 @@ This features allow to combine different types of parametric prior information. 
 
 \subsection{Discretization}
 
-In order to find numerical solution, one need to go from continuous functions in eq. ~\ref{eq-02} to discreet matrix form:
+In order to find numerical solution, one need to go from continuous functions in eq.~\ref{eq-02} to discrete matrix form:
 \begin{equation}\label{eq:algebr}
 	\begin{gathered}
       \varphi(x) = \sum \limits_n \varphi_n T_n(x),\\
