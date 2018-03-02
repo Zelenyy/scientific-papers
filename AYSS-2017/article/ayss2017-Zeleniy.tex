@@ -52,29 +52,24 @@ Since original work is very hard to find and is not accessible in languages othe
 \section{Description of statistical regularization's method}
 
 \subsection{Strategy}\label{sec:theory:strat}
-
 Consider eq.~\ref{eq-01} in operator form:
 \begin{equation}
 	\label{eq-02}
     \hat{K}\varphi = f.
 \end{equation}
-
 According to statistical decision theory (\cite{james2006statistical}), one can define a reconstruction strategy  $\hat{\varphi} = \hat{S}[f]$, which uses a prior information. Good strategy minimize an impact of prior information (which could be wrong). That could be achieved by introducing the loss-function:
 \begin{equation*}
 	L(\varphi,\hat{S}[f]) = ||\varphi-\hat{S}[f])||_{L_2},
 \end{equation*}
-
 For this loss-function:
 \begin{equation}
 	\label{eq:opt}
 	\hat{S}[f] = E[\varphi|f] = \int \varphi P(\varphi|f)d\varphi
 \end{equation}
-
 Strategy depend on a prior information $P(\varphi)$:
 \begin{equation*}
 	P(\varphi|f)= \frac{P(\varphi)P(f|\varphi)}{\int d\varphi P(\varphi)P(f|\varphi)} 
 \end{equation*}
-
 Errors of solution:
 \begin{equation*}
 	D(x_1,x_2)  = E[\varphi(x_1) - \hat{S}[f](x_1)][\varphi(x_2) - \hat{S}[f](x_2)]
@@ -107,21 +102,18 @@ The resulting prior probability density for the Gaussian random process:
     \exp\left(-\frac{1}{2}(\vec{\varphi},\alpha\Omega\vec{\varphi})\right),
 \end{equation}
 where  $\alpha = \alpha(\omega)$ - parameter of smoothness.
-The prior information depends on $\alpha$-smoothness parameter. This parameter could be estimated in a few different ways:
-\begin{enumerate}
-\item Select manually using known smoothness. This is rare probability.
-\item Use most probable parameter: $\alpha^* = \max P(\alpha|f).$
-\item Use a prior information about smoothness: 
+The prior information depends on $\alpha$-smoothness parameter. This parameter could be estimated in a few different ways: \\
+\indent a) select manually using known smoothness, but this is rare probability; \\
+\indent b) use most probable parameter: $\alpha^* = \max P(\alpha|f);$ \\
+\indent c) use a prior information about smoothness: 
   \begin{equation}\label{eq:varAposteriorAlpha}
-      P(\varphi)  = \int P_{\alpha}(\varphi) P(\alpha)~d\alpha
+      P(\varphi)  = \int P_{\alpha}(\varphi) P(\alpha)~d\alpha ;
   \end{equation}
-\item Use a posterior information about smoothness: 
+\indent d) use a posterior information about smoothness: 
   \begin{equation}\label{eq:solveAposteriorAlpha}
-      \hat{S}[f] = \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f),
+      \hat{S}[f] = \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f).
   \end{equation} 
-\end{enumerate}
-
-In fact, methods 3 and 4 are equivalent.
+In fact, methods (c) and (d) are equivalent.
 
 \subsection{Additional prior information}
 
