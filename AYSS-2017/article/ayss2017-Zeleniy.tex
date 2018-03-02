@@ -7,8 +7,7 @@
 
 \begin{document}
 
-\title{Turchin's method of statistical regularization}
-%
+\title{Application of Turchin's method of statistical regularization}
 \author{\firstname{Mikhail} \lastname{Zelenyi}\inst{1,2}\fnsep\thanks{\email{mihail.zelenyy@phystech.edu}} \and
     \firstname{Maria} \lastname{Polyakova}\inst{1,2} 
     }
@@ -18,7 +17,7 @@
     Moscow Institute of Physics and Technology
 }
 \abstract{%
-    During analysis of experimental data, one usually needs to restore a signal after it has been convoluted with some kind of apparatus function. According to Hadamard's definition this problem is ill-posed  and requires regularization to provide sensible results. In this article we consider the Turchin's method of statistical regularization based on the Bayesian approach to the regularization strategy.
+    During analysis of experimental data, one usually needs to restore a signal after it has been convoluted with some kind of apparatus function. According to Hadamard's definition this problem is ill-posed and requires regularization to provide sensible results. In this article we describe an implementation of the Turchin's method of statistical regularization based on the Bayesian approach to the regularization strategy.
 }
 %
 \maketitle
@@ -45,6 +44,10 @@ Solving such ill-possed problems requires additional operation called regulariza
     \item Gives clear data-driven procedure for choice of regularization
       strength.
 \end{itemize}
+
+While the idea of the regularization was proposed a long time ago, it was not published in the journal with sufficient visibility and therefore left unknown to the broad scientific auditory. The aim of this work is both to reconstruct the initial work (create a modern implementation for described algorithms), and study its performance under different conditions.
+
+Since original work is very hard to find and is not accessible in languages other then Russia, we will present here the short description of the method.
 
 \section{Description of statistical regularization's method}
 
@@ -167,7 +170,7 @@ If we want to get more accurate solution, we should average solution over a post
 \end{equation}
 where norming factor $C$  doesn't depend on $\alpha$. This formula allows to take integrals (\ref{eq:solveAposteriorAlpha}) and (\ref{eq:varAposteriorAlpha}) numerically.
 
-\section{An example}
+\section{Application}
 
 \begin{figure}[ht!]
 	\begin{subfigure}[b]{0.5\textwidth}
@@ -184,7 +187,7 @@ where norming factor $C$  doesn't depend on $\alpha$. This formula allows to tak
     \caption{The spectrum of electron scattering (Troitsk $\nu$-mass data)}
 \end{figure}
 
-As an example of method application we analyzed data from \cite{Abdurashitov:2016nrv} using statistical regularization. In this experiment gaseous hydrogen (and tritium)  was irradiated by electrons with energies of about 20 keV from electron gun. Troitsk nu-mass spectrometer on the other side of gas volume registers the integral electron spectrum (like at fig~~\ref{pic-01-a}) with relative resolution of about $10^{-5}$. In previous works (\cite{Aseev2000} and \cite{Abdurashitov:2016nrv}) the differential cross-section of scattering electrons on $H2$ molecules was reconstructed using fitting procedure against some 5 or 6 parameter shape. This analysis had three major flaws:
+The basic concepts of the described method (alongside some improvements) were implemented in a new prototype program written in the Python language. Then the program was used to reconstruct the differential cross-sections of electron scattering on hydrogen isotopes measured in Troitsk nu-mass experiment. In this experiment gaseous hydrogen (as well as deuterium and tritium)  was irradiated by electrons with energies of about 20 keV from electron gun. Troitsk nu-mass spectrometer on the other side of gas volume registers the integral electron spectrum (like at fig~~\ref{pic-01-a}) with relative resolution of about $10^{-5}$. In previous works (\cite{Aseev2000} and \cite{Abdurashitov:2016nrv}) the differential cross-section of scattering electrons on $H2$ molecules was reconstructed using fit procedure against 5 or 6 parameters shape. That analysis had three major flaws:
 \begin{itemize}
 \item The parametric shape for fit does not have sufficient physics basis and therefore result is subjective in respect to the parametrization.
 \item The chosen parametrization has too many parameters and produces very tight correlations between these parameters, making the fit results instable.
@@ -196,6 +199,7 @@ Turchin's regularization allows to avoid all these problems and produces clean m
 \section{Conclusion}
 
 Turchin's statistical regularization is a very powerful tool to solve ill-posed inversed problems. It provides a flexible way to introduce almost any kind of prior knowledge into reconstruction problem. Also it opens a new way to solve some problems which previously were solved only by direct approach.
+In this work, we created an implementation of Turchin's regularization using modern language and successfully applied it to the Troitsk nu-mass data for electron scattering on hydrogen isotopes. The work was preceded by a lot of testing of the algorithm with different artificial functions and discretization options. The results of those tests are beyond the scope of this article.
 
 This work is supported by the Ministry of Education and Science of the Russian Federation under the contract No. 3.3008.2017/PP.
 
