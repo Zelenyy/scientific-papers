@@ -118,7 +118,7 @@ or,  to marginalize by $\varphi$ and to integrate by $P(\alpha|f)$:
     \hat{S}[f] =\frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f)
     \label{eq:solveAposteriorAlpha}
     \end{equation}
-    using MCMC for sampling $\varphi$ and $\alpha$ (for Gaussian errors it could be reduced to numerical integral). In private case this options can give different solutions if we will use some approximations. Also if distribution $P(\alpha|f)$ is narrow, we can pick $\alpha$ corresponding to most probable $\alpha_0$ and use $P(\varphi|\alpha_0)$ as prior. This is called empirical Bayes. For our problem it produces almost identical results.
+    using MCMC for sampling $\varphi$ and $\alpha$ (for Gaussian errors it could be reduced to numerical integral). In particular case we can simplify calculations by using following approximations. Also if distribution $P(\alpha|f)$ is narrow, we can pick $\alpha$ corresponding to most probable $\alpha_0$ and use $P(\varphi|\alpha_0)$ as prior. This is called empirical Bayes. For our problem it produces almost identical results.
     
 Derivation above assumed that $\Omega$ if positive definite. It possible to
 accommodate singular $\Omega$. Then $\det$ in~(\ref{eq-prior}) should be
