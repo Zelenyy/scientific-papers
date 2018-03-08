@@ -78,61 +78,90 @@ Let us consider what a prior information can we use?
 
 \subsection{A prior information}\label{sec:theory:aprior}
 
-A general case of prior information is assumption about function smoothness. The applications of such prior information is done in three stages:
-\begin{enumerate}
-\item Minimize additional Shannon's information:
-	\begin{equation*}
-		I[P(\varphi)] = \int \ln{P(\varphi)} P(\varphi) d\varphi \to min
-	\end{equation*}
-\item Normalize probability density:
-	\begin{equation*}
-		\int P(\varphi) d\varphi = 1
-	\end{equation*}   
-\item Analyze information about smoothness of function $\varphi(x)$:
-	\begin{equation}
-		\label{eq-smoothness}
-		\int \langle \varphi,\hat{\Omega}\varphi \rangle P(\varphi) d\varphi = \omega,
-	\end{equation}
-where $\omega$ - required level of smoothness,   $\hat{\Omega}$ - operator of smoothness (for example, $\hat{\Omega}=|\frac{d^2}{dx^2}\left\rangle\right\langle\frac{d^2}{dx^2}|$).
-\end{enumerate}
+We expect that $\varphi$ is relatively smooth and doesn't contain wild
+oscillations which, for example, we usually produce in use naive least squares. Common way of measuring
+function's smoothness is $\langle\varphi,\hat{\Omega}\varphi\rangle$, where
+$\hat{\Omega}=|\frac{d^2}{dx^2}\left\rangle\right\langle\frac{d^2}{dx^2}|$.
+At the same time we want to minimize information content of prior. 
+
+Reasonable choice is ensemble of functions with average smoothness $\omega$ which
+maximizes Shannon entropy (or is equivalent to minimize that value of Shannon's information, which we add to solution). Which means we need to maximize:
+
+\begin{equation*}
+  H[P(\varphi)] = -\int \ln{P(\varphi)} P(\varphi) d\varphi
+\end{equation*}
+
+Subject to constraints:
+
+\begin{equation}
+  \int P(\varphi) d\varphi = 1
+  \qquad\mbox{and}\qquad
+  \int \langle \varphi,\hat{\Omega}\varphi \rangle P(\varphi) d\varphi = \omega,  
+  \label{eq-smoothness}
+\end{equation}
 
 The resulting prior probability density for the Gaussian random process:
 \begin{equation}
-	P_{\alpha}(\vec{\varphi})  = \frac{\alpha^{Rg(\Omega)/2}\det\Omega^{1/2}}{(2\pi)^{N/2}} 
-    \exp\left(-\frac{1}{2}(\vec{\varphi},\alpha\Omega\vec{\varphi})\right),
+  P(\vec{\varphi}|\alpha) = \frac{\det(\alpha\Omega)^{1/2}}{(2\pi)^{N/2}} 
+  \exp\left(-\frac{1}{2}\langle\vec{\varphi},\alpha\Omega\vec{\varphi}\rangle\right),
+  \label{eq-prior}
 \end{equation}
-where  $\alpha = \alpha(\omega)$ - parameter of smoothness.
-The prior information depends on $\alpha$-smoothness parameter. This parameter could be estimated in a few different ways: \\
-\indent a) select manually using known smoothness, but this is rare probability; \\
-\indent b) use most probable parameter: $\alpha^* = \max P(\alpha|f);$ \\
-\indent c) use a prior information about smoothness: 
-  \begin{equation}\label{eq:varAposteriorAlpha}
-      P(\varphi)  = \int P_{\alpha}(\varphi) P(\alpha)~d\alpha ;
-  \end{equation}
-\indent d) use a posterior information about smoothness: 
-  \begin{equation}\label{eq:solveAposteriorAlpha}
-      \hat{S}[f] = \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f).
-  \end{equation} 
-In fact, methods (c) and (d) are equivalent.
+where $\alpha = \alpha(\omega)$~--- parameter of smoothness. In result, we get $\alpha$-depend solution $hat{S}_{\alpha}[f]$ and now we have problem of picking $\alpha$. In rare cases we can select $alpha$ manually using known empirical smoothness, but we proposal another way. Information about its value almost never available so we
+could consider it random variable as well. This yields us hierarchical Bayes
+model:
 
-\subsection{Additional prior information}
+\begin{equation}
+  P(f,\varphi,\alpha) = P(f|\varphi)P(\varphi,\alpha)P(\alpha)
+\end{equation}
 
-In eq.~\ref{eq-smoothness} one can use not only smoothness operator, but also different or even multiple different conditions: 
-\begin{equation*}
-    P_{\alpha\beta}(\varphi) \sim  \det \left|\alpha\Omega_1 +\beta\Omega_2\right|\exp\left(-\frac{1}{2} (\vec{\varphi},(\alpha\Omega_1 + \beta\Omega_2)\vec{\varphi})\right)
-\end{equation*}
+Since we don't have any information about $\alpha$ we chose hyperprior
+$P(\alpha)$ to be flat. Now we have several options to pursue:
 
-This features allow to combine different types of parametric prior information. Also one can use non-parametric prior. For example, information about non-negativity:
+\begin{enumerate}
+    \item Use fully Bayesian approach and marginalize $\alpha$:
+    \begin{equation}\label{eq:varAposteriorAlpha}
+    P(\varphi) = \int P(\varphi|\alpha) P(\alpha)~d\alpha
+    \end{equation}
+    \item Use empirical Bayes: pick $\alpha$ corresponding to most probable
+    $P(\alpha|f)$:
+    \begin{equation}
+    P(\alpha|f) = \int d\varphi~P(f|\varphi)P(\varphi|\alpha)P(\alpha)
+    \end{equation}  
+\end{enumerate}
+In general case this options is equivalent: best solution definition by next formula:
+\begin{equation}
+\hat{S}[f] = \frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha)~d\alpha =\frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f)
+\end{equation}
+and MCMC could be used to sample $\varphi$ and $alpha$ for computing solution (for Gaussian errors it could be reduced to numerical integral). In private case this options can give different solutions if we will use some approximations. For example we can used most probability $alpha$ by $P(\alpha|f)$. This method used for our application problem.
+
+Derivation above assumed that $\Omega$ if positive definite. It possible to
+accommodate singular $\Omega$. Then $\det$ in~(\ref{eq-prior}) should be
+replaced with pseudodeterminant. Positive definiteness is desirable since
+regularization is guaranteed to work only for non-singular $\Omega$ and singular
+or even near-singular $\Omega$ may and likely will cause numerical problems.
+
+Also note that $\Omega$ we use is singular since $\varphi = kx + b$ will have
+smoothness equal to zero. One way fix it is to fix value of $\varphi$ to 0 and
+boundaries or to put priors on values on
+boundaries\cite{calvetti2006aristotelian}. In that case $\alpha\Omega$
+in~(\ref{eq-prior}) should be replaced with $\sum_i\alpha_i\Omega_i$ where
+different $\Omega_i$ corresponds to smoothness, boundary values etc.
+
+Also it's possible to add any other prior information about function. For
+example it possible to add non-negativity:
+
 \begin{equation*}
     P(\varphi) \sim P_{\alpha}(\varphi)P(\varphi(x) > 0)
 \end{equation*}
+
 
 \subsection{Discretization}
 
 In order to find numerical solution, one need to go from continuous functions in eq.~\ref{eq-02} to discrete matrix form:
 \begin{equation}\label{eq:algebr}
 	\begin{gathered}
-      \varphi(x) = \sum \limits_n \varphi_n T_n(x),\\
+      \varphi(x) = \sum \limits_n \varphi_n T_n(x),
+      \qquad\mbox{and}\qquad
       K_{mn} = (\hat{K}T_n(x))(y_m),\\
       \Omega_{ij} = \int\limits_a^b \left(\frac{d^pT_i(x)}{dx}\right)\left(\frac{d^pT_j(x)}{dx}\right)dx,\\
       D[\varphi(x)] = D[\sum \limits_n \varphi_n T_n(x)] = \sum\limits_{i,j} \varphi_i\varphi_j cov(T_i(x), T_j(x)),\\
