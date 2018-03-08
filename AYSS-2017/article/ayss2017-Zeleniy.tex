@@ -79,13 +79,13 @@ Let us consider what a prior information can we use?
 \subsection{A prior information}\label{sec:theory:aprior}
 
 We expect that $\varphi$ is relatively smooth and doesn't contain wild
-oscillations which naive least squares usually produce. Common way of measuring
+oscillations which, for example, we usually produce in use naive least squares. Common way of measuring
 function's smoothness is $\langle\varphi,\hat{\Omega}\varphi\rangle$, where
 $\hat{\Omega}=|\frac{d^2}{dx^2}\left\rangle\right\langle\frac{d^2}{dx^2}|$.
 At the same time we want to minimize information content of prior. 
 
 Reasonable choice is ensemble of functions with average smoothness $\omega$ which
-maximizes Shannon entropy. Which means we need to maximize:
+maximizes Shannon entropy (or is equivalent to minimize that value of Shannon's information, which we add to solution). Which means we need to maximize:
 
 \begin{equation*}
   H[P(\varphi)] = -\int \ln{P(\varphi)} P(\varphi) d\varphi
@@ -106,9 +106,7 @@ The resulting prior probability density for the Gaussian random process:
   \exp\left(-\frac{1}{2}\langle\vec{\varphi},\alpha\Omega\vec{\varphi}\rangle\right),
   \label{eq-prior}
 \end{equation}
-
-where $\alpha = \alpha(\omega)$~--- parameter of smoothness. Now we have problem
-of picking $\alpha$. Information about its value almost never available so we
+where $\alpha = \alpha(\omega)$~--- parameter of smoothness. In result, we get $\alpha$-depend solution $hat{S}_{\alpha}[f]$ and now we have problem of picking $\alpha$. In rare cases we can select $alpha$ manually using known empirical smoothness, but we proposal another way. Information about its value almost never available so we
 could consider it random variable as well. This yields us hierarchical Bayes
 model:
 
@@ -120,23 +118,21 @@ Since we don't have any information about $\alpha$ we chose hyperprior
 $P(\alpha)$ to be flat. Now we have several options to pursue:
 
 \begin{enumerate}
-\item Use fully Bayesian approach and marginalize $\alpha$:
-  \begin{equation}\label{eq:varAposteriorAlpha}
-      P(\varphi) = \int P(\varphi|\alpha) P(\alpha)~d\alpha
-  \end{equation}
-  In general case MCMC could be used to sample $\varphi$ from full
-  posterior. And for Gaussian errors it could be reduced to numerical integral.
-  
-\item Use empirical Bayes: pick $\alpha$ corresponding to most probable
-  $P(\alpha|f)$
-
-  \begin{equation}
+    \item Use fully Bayesian approach and marginalize $\alpha$:
+    \begin{equation}\label{eq:varAposteriorAlpha}
+    P(\varphi) = \int P(\varphi|\alpha) P(\alpha)~d\alpha
+    \end{equation}
+    \item Use empirical Bayes: pick $\alpha$ corresponding to most probable
+    $P(\alpha|f)$:
+    \begin{equation}
     P(\alpha|f) = \int d\varphi~P(f|\varphi)P(\varphi|\alpha)P(\alpha)
-  \end{equation}
-
-  If distribution $P(\alpha|f)$ is narrow it will produce approximately same
-  result. And it's the case for our example problem
+    \end{equation}  
 \end{enumerate}
+In general case this options is equivalent: best solution definition by next formula:
+\begin{equation}
+\hat{S}[f] = \frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha)~d\alpha =\frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f)
+\end{equation}
+and MCMC could be used to sample $\varphi$ and $alpha$ for computing solution (for Gaussian errors it could be reduced to numerical integral). In private case this options can give different solutions if we will use some approximations. For example we can used most probability $alpha$ by $P(\alpha|f)$. This method used for our application problem.
 
 Derivation above assumed that $\Omega$ if positive definite. It possible to
 accommodate singular $\Omega$. Then $\det$ in~(\ref{eq-prior}) should be
@@ -164,7 +160,8 @@ example it possible to add non-negativity:
 In order to find numerical solution, one need to go from continuous functions in eq.~\ref{eq-02} to discrete matrix form:
 \begin{equation}\label{eq:algebr}
 	\begin{gathered}
-      \varphi(x) = \sum \limits_n \varphi_n T_n(x),\\
+      \varphi(x) = \sum \limits_n \varphi_n T_n(x),
+      \qquad\mbox{and}\qquad
       K_{mn} = (\hat{K}T_n(x))(y_m),\\
       \Omega_{ij} = \int\limits_a^b \left(\frac{d^pT_i(x)}{dx}\right)\left(\frac{d^pT_j(x)}{dx}\right)dx,\\
       D[\varphi(x)] = D[\sum \limits_n \varphi_n T_n(x)] = \sum\limits_{i,j} \varphi_i\varphi_j cov(T_i(x), T_j(x)),\\
