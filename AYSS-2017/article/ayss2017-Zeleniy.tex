@@ -40,7 +40,7 @@ Solving such ill-possed problems requires additional operation called regulariza
     \item Based on Bayesian approach and decision theory (choice theory).
     \item It's able to accommodate various forms of prior information, such as
       smoothness, constraints on boundary conditions, non-negativity, etc.
-    \item It allows estimation of errors for reconstructed function $\phi$
+    \item It allows estimation of errors for reconstructed function $\varphi$
     \item Gives clear data-driven procedure for choice of regularization
       strength.
 \end{itemize}
@@ -106,34 +106,20 @@ The resulting prior probability density for the Gaussian random process:
   \exp\left(-\frac{1}{2}\langle\vec{\varphi},\alpha\Omega\vec{\varphi}\rangle\right),
   \label{eq-prior}
 \end{equation}
-where $\alpha = \alpha(\omega)$~--- parameter of smoothness. In result, we get $\alpha$-depend solution $hat{S}_{\alpha}[f]$ and now we have problem of picking $\alpha$. In rare cases we can select $alpha$ manually using known empirical smoothness, but we proposal another way. Information about its value almost never available so we
-could consider it random variable as well. This yields us hierarchical Bayes
-model:
-
-\begin{equation}
-  P(f,\varphi,\alpha) = P(f|\varphi)P(\varphi,\alpha)P(\alpha)
-\end{equation}
-
-Since we don't have any information about $\alpha$ we chose hyperprior
-$P(\alpha)$ to be flat. Now we have several options to pursue:
-
-\begin{enumerate}
-    \item Use fully Bayesian approach and marginalize $\alpha$:
+where $\alpha = \alpha(\omega)$~--- parameter of smoothness. In result, we get $\alpha$-depend solution $\hat{S}_{\alpha}[f]$ and now we have problem of picking $\alpha$. In rare cases we can select $\alpha$ manually using known empirical smoothness, but we proposal another way. Information about its value almost never available so we could consider it random variable as well. This yields us hierarchical Bayes model $P(f,\varphi,\alpha) = P(f|\varphi)P(\varphi,\alpha)P(\alpha)$.
+Since we don't have any information about $\alpha$ we chose hyperprior $P(\alpha)$ to be flat. Now we have several options to pursue. In general case, we can use fully Bayesian approach  and compute solution to marginalize by $\alpha$ and to use eq. ~\ref{eq:opt}:
     \begin{equation}\label{eq:varAposteriorAlpha}
-    P(\varphi) = \int P(\varphi|\alpha) P(\alpha)~d\alpha
+    P(\varphi) = \int P(\varphi|\alpha) P(\alpha)~d\alpha 
     \end{equation}
-    \item Use empirical Bayes: pick $\alpha$ corresponding to most probable
-    $P(\alpha|f)$:
+or,  to marginalize by $\varphi$ and to integrate by $P(\alpha|f)$:
     \begin{equation}
-    P(\alpha|f) = \int d\varphi~P(f|\varphi)P(\varphi|\alpha)P(\alpha)
-    \end{equation}  
-\end{enumerate}
-In general case this options is equivalent: best solution definition by next formula:
-\begin{equation}
-\hat{S}[f] = \frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha)~d\alpha =\frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f)
-\end{equation}
-and MCMC could be used to sample $\varphi$ and $alpha$ for computing solution (for Gaussian errors it could be reduced to numerical integral). In private case this options can give different solutions if we will use some approximations. For example we can used most probability $alpha$ by $P(\alpha|f)$. This method used for our application problem.
-
+    P(\alpha|f) \sim \int d\varphi~P(f|\varphi)P(\varphi|\alpha)P(\alpha)
+    \qquad\mbox{and}\qquad
+    \hat{S}[f] =\frac{1}{Norm} \int d\alpha \hat{S}_{\alpha}[f] P(\alpha|f)
+    \label{eq:solveAposteriorAlpha}
+    \end{equation}
+    using MCMC for sampling $\varphi$ and $\alpha$ (for Gaussian errors it could be reduced to numerical integral). In private case this options can give different solutions if we will use some approximations. Also if distribution $P(\alpha|f)$ is narrow, we can pick $\alpha$ corresponding to most probable $\alpha_0$ and use $P(\varphi|\alpha_0)$ as prior. This is called empirical Bayes. For our problem it produces almost identical results.
+    
 Derivation above assumed that $\Omega$ if positive definite. It possible to
 accommodate singular $\Omega$. Then $\det$ in~(\ref{eq-prior}) should be
 replaced with pseudodeterminant. Positive definiteness is desirable since
@@ -184,12 +170,12 @@ Using  the most probable $\alpha$, one can get the best solution in a simple for
 \begin{equation} \label{eq:analit_var}
 	\texttt{cov}_{\alpha}(\varphi_m, \varphi_n) = ||(K^T\Sigma^{-1}K+\alpha^*\Omega)^{-1}||_{mn}
 \end{equation}
-If we want to get more accurate solution, we should average solution over a posterior probability, which is calculated using Bayes' rule: 
+For definition $\alpha$, we use a posterior probability, which is calculated using Bayes' rule: 
 \begin{equation}
 	\label{eq:alphaaposter}
 	P(\alpha|\vec{f}) = C \alpha^{\frac{Rg(\Omega)}{2}}\sqrt{|(B+\alpha\Omega)^{-1}|}\exp(-\frac{1}{2}b^{T}B^{-1}b)\exp(\frac{1}{2}b^{T}(B+\alpha\Omega)^{-1}b),
 \end{equation}
-where norming factor $C$  doesn't depend on $\alpha$. This formula allows to take integrals (\ref{eq:solveAposteriorAlpha}) and (\ref{eq:varAposteriorAlpha}) numerically.
+where norming factor $C$  doesn't depend on $\alpha$. If we want to get more accurate solution, we should average solution over this posterior probability as it is describe in integrals ~\ref{eq:solveAposteriorAlpha}.
 
 \section{Application}
 
