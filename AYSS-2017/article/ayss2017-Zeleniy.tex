@@ -26,7 +26,7 @@
 
 \subsection{Problem}
 
-Consider the usual situation: detector measures a signal ($\varphi(x)$) and produces observed data ($f(y)$) via convolution with its own apparatus function ($K(x,y)$). The resulting observed data $f(y)$ contains a random noise factor both from initial statistical uncertainty of $\varphi(x)$ and additional noise from measurement procedure. In order to reconstruct initial signal, one needs to solve Fredholm equation:
+Consider the usual situation: detector measures a signal ($\varphi(x)$) and produces observed data ($f(y)$) via convolution with its own apparatus function ($K(x,y)$). The resulting observed data $f(y)$ contains a random noise factor both from initial statistical uncertainty of $\varphi(x)$ and additional noise from measurement procedure. In order to reconstruct initial signal, one needs to solve Fredholm equation of 1-st kind:
 \begin{equation}
 \label{eq-01}
     f(y) = \int dx~ K(x,y)\varphi(x),
@@ -35,7 +35,7 @@ but this equation is ill-possed: a small error in the measurement of $f(y)$ lead
 
 \subsection{Solution}
 
-Solving such ill-possed problems requires additional operation called regularization. Regularization is a process of introducing additional information for transition from ill-possed problem to well-possed problem. The idea of statistical regularization~\cite{Turchin, Turovceva} is to look on the problem from the point of view of Bayessian statistics approach: unknown statistical value $\varphi(x)$ could be reconstructed using  measured value $f(y)$, the model ($K(x,y)$) and some prior information about $\varphi(x)$ behavior. Main features of statistical regularization:
+Solving such ill-possed problems requires additional operation called regularization. It means we need to introduce additional information to problem well-posed one. The idea of statistical regularization~\cite{Turchin, Turovceva} is to look on the problem from the point of view of Bayessian statistics approach: unknown statistical value $\varphi(x)$ could be reconstructed using  measured value $f(y)$, the model ($K(x,y)$) and some prior information about $\varphi(x)$ behavior. Main features of statistical regularization:
 \begin{itemize}
     \item Based on Bayesian approach and decision theory (choice theory).
     \item It's able to accommodate various forms of prior information, such as
@@ -47,7 +47,7 @@ Solving such ill-possed problems requires additional operation called regulariza
 
 While the idea of the regularization was proposed a long time ago, it was not published in the journal with sufficient visibility and therefore left unknown to the broad scientific auditory. The aim of this work is both to reconstruct the initial work (create a modern implementation for described algorithms), and study its performance under different conditions.
 
-Since original work is very hard to find and is not accessible in languages other then Russia, we will present here the short description of the method.
+Since original work is very hard to find and was published only in Russian language, we will present the short description of the method.
 
 \section{Description of statistical regularization's method}
 
