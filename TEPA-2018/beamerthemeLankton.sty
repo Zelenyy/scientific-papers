@@ -14,38 +14,42 @@
 \definecolor{deepblue}{rgb}{0.22, 0.1, 0.99}
 \definecolor{normblue}{rgb}{0.27059, 0.38039, 0.95294}
 \definecolor{backgrndblue}{rgb}{0.79608, 0.69804, 1}
-
+\definecolor{madara}{rgb}{0., 0., 0}
 
 %\setbeamercolor{headline}{bg=transparent}
 \setbeamercolor{footline}{bg=backgrndblue}
 \setbeamerfont{footline}{size=\large}
 %\setbeamercolor{separation line}{bg=black}
 \setbeamercolor{title in headline}{fg=deepblue}
-\setbeamercolor{author in headline}{fg=normblue}
-\setbeamercolor{institute in headline}{fg=gray}
+\setbeamerfont{title in headline}{size=\Huge}
+\setbeamercolor{author in headline}{fg=black}
+\setbeamercolor{institute in headline}{fg=black}
 
-\setbeamercolor{framesubtitle}{fg=blue, bg=gray}
+%\setbeamercolor{framesubtitle}{fg=blue, bg=gray}
 \setbeamercolor{author in head/foot}{fg=black,bg=backgrndblue}
 \setbeamercolor{title in head/foot}{fg=black,bg=black}
 \setbeamercolor{website in footline}{fg=black,bg=black}
 \setbeamercolor{email in footline}{fg=black,bg=black}
 
 \setbeamercolor*{normal text}{fg=black, bg=white}
+\setbeamerfont{normal text}{size=\large}
 \setbeamercolor*{block body}{fg=black,bg=white}
-\setbeamercolor*{block title}{fg=deepdeepblue,bg=backgrndblue}
-\setbeamerfont{block title}{size=\large,series=\sc\bf}
+\setbeamerfont{block body}{size=\large}
+\setbeamercolor*{block title}{fg=madara,  bg=white} %,bg=backgrndblue
+\setbeamerfont{block title}{size=\Large,series=\sc\bf,}
 \setbeamercolor{upper separation line head}{fg=black}
 
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
+%\setbeamerfont{}
 \setbeamertemplate{itemize items}[triangle]
 \setbeamertemplate{navigation symbols}{}  % no navigation on a poster
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{block begin}{
   \vskip.5ex
-  \begin{beamercolorbox}[rounded=true,shadow=true,leftskip=1ex,colsep*=.5ex]{block title}%
-    \usebeamerfont*{block title}{\Large \insertblocktitle}
+  \begin{beamercolorbox}[rounded=true,shadow=flase,leftskip=1ex,colsep*=.5ex]{block title}%
+    \usebeamerfont*{block title}{\Huge \insertblocktitle}%
   \end{beamercolorbox}%
   {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
   \usebeamerfont{block body}%
