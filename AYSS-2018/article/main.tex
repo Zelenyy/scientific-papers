@@ -1,0 +1,133 @@
+\documentclass[utf8]{webofc}
+\usepackage[varg]{txfonts}
+% review
+\usepackage[textwidth=120]{todonotes}
+%\usepackage{color}
+\usepackage{subcaption}
+
+\begin{document}
+    \title{About some questions in modern models of thunderstorm runway breakdown}
+    \author{\firstname{Mikhail} \lastname{Zelenyi}\inst{1,2,3}\fnsep\thanks{\email{mihail.zelenyy@phystech.edu}} \and
+        \firstname{Egor} \lastname{Stadnichuk}\inst{1,2}\fnsep\thanks{\email{egrstadnichuk@yandex.ru}} \and \firstname{Alexander} \lastname{Nozik}\inst{1,2}\fnsep\thanks{\email{altavir@gmail.com}}  
+    }
+    
+    \institute{Institute for Nuclear Research of RAS
+        \and
+        Moscow Institute of Physics and Technology (State University) 
+        \and
+        Space Research Institute of RAS
+    }
+    \abstract{%
+        Some of modern models used to describe TGF phenomenon and lightning ignition suppose the existence of the positive positron or gamma ray feedback. The results of Monte-Carlo simulation presented in this work encourage to give a fresh look into this problem. Namely, the positive enhancement for experimentally observed electric fields in thunderclouds is not enough to produce positive feedback.
+        %In modern models based on runway breakdown and created for explaining initiation of lighting and TGF phenomenon, there has been a strong emphasis on peak of positron annihilation in observed gamma-ray spectra. This observation used as evidence importance of positron feedback in thunderstorms. But in this report, we give some result of Monte-Carlo simulations speaking about weak influence of positrons on thunderstorm processes and appearance of TGF.
+    }
+    %
+    \maketitle
+    
+    \section{Introduction}
+    Despite decades of investigations and observations, there are gaps in physics of atmospheric discharge. Nowadays the process of development of lightning after initial breakdown is widely known. However, the mechanism of cloud ionization which is required to produce initial breakdown is not described accurately. Furthermore, some observed effects connected to lightning generation also lack explanation. For example, terrestrial gamma ray flashes (TGFs) are closely correlated with thunderstorms. This phenomenon has several models but none of them are considered satisfying.
+    \begin{figure}[ht!]
+        \begin{subfigure}[b]{0.5\textwidth}
+            \includegraphics[width=0.95\linewidth]{pictures/01_Gurevich}
+            \caption{}
+            \label{pic-gurevich-a}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.5\textwidth}
+            \includegraphics[width=0.95\textwidth]{pictures/03_extremal_field}
+            \caption{}
+            \label{pic-field-b}
+        \end{subfigure}
+        \caption{
+            a) Gurevich model: if electric field higher than MIP loss (green line) that possibly generation runway electron, otherwise (red line) avalanches discharged~\cite{gurevich1992runaway}.
+            %     a) Distribution of horizontal electric field ~\cite{mazin1989clouds} 
+            b) Extremal value of vertical electric field (before 1989 y.)~\cite{mazin1989clouds}}
+    \end{figure}
+    
+    Gurevich has made a notable contribution in understanding of electron avalanche physics in atmosphere~\cite{gurevich1992runaway}. According to his research, cosmic ray charged particles are accelerated in thundercloud electric field and are producing enhanced ionization. Gurevich studied electron behavior in air with electric field. Energetic electrons that are able to accelerate under such conditions are called runaway electrons (see Fig.~\ref{pic-gurevich-a}). In the following works, Gurevich developed the runaway theory~\cite{gurevich1999lightning,gurevich2001kinetic}. Nevertheless, the flux of cosmic rays is not intensive enough to explain cloud charging with only runaway electron ionization.
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=0.5\textwidth]{pictures/10_dwyer}
+        
+        
+        
+        \caption{Part of Geant 4 simulation. Red tracks~--- electrons. Blue tracks~--- positrons. Green tracks~--- gamma-rays. Simulation conducted for normal air density and electric field 10 kV/cm. Left blue track is positron which generate new runway avalanche and illustrate positron feedback mechanism.}
+        \label{pic-dwyer-a}   
+    \end{figure}
+    
+    Dwyer proposed a mechanism of positron feedback that increases the runaway electron flux~\cite{dwyer2003fundamental}. Dwyer constructed his simulation in the cell with electric field value of 1000 kilovolts per meter. A cell is a cylinder of air with electric field. Dwyer’s feedback mechanism is described briefly as follows. A runaway electron propagating through such a cell radiates bremsstrahlung photons. If the bremsstrahlung photon has enough energy, then it can produce an electron-positron pair. The positron charge is opposite to the electron charge, therefore it reverses in electric field and then propagates in direction opposite to the runaway electron motion direction. Such positrons have a chance to produce electrons near the beginning of primary runaway electron track. Then ionization electrons can reverse in the electric field and propagate through cell creating secondary electron avalanche. The runaway theory with Dwyer feedback mechanism is considered to be one of the most reliable theories describing processes appearing in thunderclouds before lightning strike. Example of Dwyer mechanism is shown at Fig.~\ref{pic-dwyer-a}.
+    
+    Direct measurements show that observed thundercloud electric field is less than 200 kilovolts per  meter(\cite{mazin1989clouds, marshall1995electric}). Some data points are showed at Fig.~\ref{pic-field-b}. However, there are no results in literature regarding how positron feedback works under such conditions. The aim of the present work is to reveal whether Dwyer model operates in cells with uniform electric field less than 200 kilovolts per meter and air density between 0.3 and 0.8 kilogram per cubic meter and to calculate positron feedback coefficients for different electric fields. %The algorithm of feedback coefficient calculating is described in methodology section.
+    %The results of the investigation are negative. The paper shows that positron feedback coefficient is much less than 1 in cells with electric field under 200 kilovolts per meter. That means that one electron avalanche does not create secondary avalanches by positron feedback mechanism. The accurate value of positron feedback coefficient is stated in results section.
+    \section{Simulation}
+    
+    In this work we consider two mechanisms proposed by Dwyer: gamma and positron feedback. 
+    In both cases the idea is similar:
+    \begin{enumerate}
+        
+        \item Initial electron accelerates in the electric field and produces photon which is flying backwards or positron which is reversed by electric field and also flies backward.
+        
+        \item The positron or photon produces electron near the beginning of the acceleration cell.
+        
+        \item This electron is rotated by the electric field and produces the secondary avalanche. 
+        
+    \end{enumerate}
+    
+    The electron produced in the last phase is called secondary electron. The gain coefficient is defined as an average number of secondary electrons produced per single initial electrons. Obviously, in order to have significant enhancement mechanism, one need gain to be greater or equal to 1. 
+    The gain is obviously proportional to the number of positrons and/or gamma rays generated by initial electron, but there is a number of factors that contribute to that quantity.
+    
+    \begin{itemize}
+        \item Positrons are mostly produced not directly, but by bremsstrahlung gamma rays emitted by initial electron. The mean free path of this gamma for this process is quite large (of the order of few kilometers for atmospheric conditions). Therefore, the probability of generating positron inside the acceleration cell is proportional to cell size and density (increase in density reduces the mean free path). Also, the number of positrons is proportional to field in cell (since electrons with higher energy are more likely to produce appropriate photons).
+        \item Not all positrons are accelerated backwards. Due to conservation of momentum, large fraction of them are moving forward. Those positrons are usually stopped by electric field and annihilated.
+        \item Accelerated positron has rather small probability to directly produce an electron because the cross-section diminishes with energy.
+        \item Secondary electrons, produced both by positrons and gamma rays are usually fly toward "back" side of the cell due to conservation of momentum. Those electron could be rotated by the electric field to fly forward, but one must remember, that once electron energy is below Gurevitch's critical energy, it could not be accelerated and is lost.
+    \end{itemize}
+    
+    The simulation are done by GEANT4 transport code (\cite{ALLISON2016186}) in three steps:
+    
+    \begin{enumerate}
+        \item Calculate energy and angular spectra of positrons and gamma rays of sufficient energy, which are produced inside the cell.
+        \item Use those spectra as initial distributions for secondary simulation of particles flying backwards and register all secondary electrons.
+        \item Select only those electrons, which could be later reversed forward without stopping. Minimal particle energy is determined from value of electric field and ionization loss curve (\ref{pic-gurevich-a}). The dependence of minimal angle between cell axis backward direction and velocity is shown at Fig.~\ref{pic-reverse-b}
+    \end{enumerate}
+    
+    
+    
+    \section{Results}
+    
+    \begin{figure}[ht!]
+        \begin{subfigure}[b]{0.5\textwidth}
+            \includegraphics[width=0.95\linewidth]{pictures/09_condition}
+            \caption{}
+            \label{pic-reverse-b}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.5\textwidth}
+            \includegraphics[width=0.95\textwidth]{pictures/08_gain}
+            
+            \caption{}
+            \label{pic-gain-a}
+        \end{subfigure}
+        \caption{     a) Minimum reversal angle between electron motion direction in moment of its birth and electric field depending on electron energy. All of electrons situated above the curve are able to generate secondary electron avalanche in the cell. According to this graph, less than 50\% of electrons produced by positrons will generate secondary electron flux.
+            b) Positron (gamma) feedback coefficient dependent on cell electric field for next parameters: primary electron energy~--- 3~MeV, field area size~--- 400~meter, electric field from 1 to 2~kV/cm, air density~--- $0.5~kg/m^3$ ($\sim 0.5~atm$).
+        }
+    \end{figure}
+    
+    The gain coefficient is calculated as a convolution of probabilities of producing valid particle on each step and applying all relevant cuts.
+    
+    Using simulation result we calculate gain coefficient by previously introduced formula. The result for general cell parameters: primary electron energy~--- 3~MeV, field area size~--- 400~meter, electric field from 1 to 2~kV/cm, air density~--- $0.5~kg/m^3$ ($\sim 0.5~atm$) is presented at Fig.~\ref{pic-gain-a}. It could be clearly seen that the total gain factor is significantly smaller than one for fields smaller than 200~kV/m. The gamma gain negligible and positron gain tops at about 6\%. Such small number could not explain self-sustaining discharge mechanism, proposed by Dwyer and give only small contribution to total charge generation.
+    
+    One should note, that Dwyer mechanism could still work for higher fields (like 1000~kV/m), but those conditions are unreachable for both real gas and simulations, because normal gas breakdown in moist (and even dry) air starts much sooner. Experimental evidence shows that it is not the case in thunderclouds.
+    
+    The model shows a positron annihilation line in gamma-spectrum, which was observed in multiple experiments~\cite{dwyer2015positron}. This line is an intrinsic part of any model based on Gurevitch runaway model, still this positron line does not guarantee the role of positrons in producing the feedback. Detailed numerical estimation of those effects requires additional simulation with enhanced statistics which is being performed right now.
+    
+    \section{Conclusion}
+    
+    The results of GEANT4 simulations, presented in this article clearly show that positron and gamma feedback introduces very small (few percents at most) contribution to total charge generation in the thundercloud under realistic conditions (electric field between 100 and 250~kV/m and pressure from 0.5 to 0.8~atmosphere). 
+    
+    Dwyer positron enhancement is still possible for much higher electric fields (like 1000~kV/m), but those fields are unreachable in the thunderclouds since they are higher than the breakdown field. The simultaneous increase of field and density proposed in one of works by Dwyer~\cite{dwyer2003fundamental} conserves Gurevitch's critical energy but strongly affects the number of produced positrons (both changes work in direction of increasing positron flux).
+    
+    This work is supported by the Russian Science Foundation under grant No. 17-12-01439.
+    
+    \bibliography{references}{}
+\end{document}
