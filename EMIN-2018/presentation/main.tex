@@ -23,53 +23,146 @@
     \frame[plain]{\maketitle}
     
     \begin{frame}
-        \frametitle{Target}
+        \frametitle{Introduction}
+            \begin{columns}
+            \begin{column}{0.6\textwidth}
+                \begin{itemize}
+                    \item For fight against crime, control of transport containers is important.
+                    \item For exploring transport containers can be used gamma ray produced by bremsstrahlung
+                    \item In this report we consider:
+                        \begin{itemize}
+                            \item Methodology, existing solution and out proposition.
+                            \item GEANT4 simulation of gamma ray scans.
+                            \item Measurement resolution of gamma  ray detector
+                        \end{itemize}
+                   
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.4\textwidth} 
+        \includegraphics[width=1\textwidth]{figures/terrorist.jpg}
+            \end{column}
+        \end{columns}  
     \end{frame}
     \begin{frame}
     \frametitle{Methodology: Gamma ray attenuation}
     \begin{columns}
-        \begin{column}{0.8\textwidth}
+        \begin{column}{0.7\textwidth}
             $$
             T(E_0, t, z) = \frac{\int \limits_0^{E_0} S(E_0, E) \exp(-\mu(E,z)\times t)~dE)}{\int \limits_0^{E_0} S(E_0, E)~dE}
             $$
-               \includegraphics[width=1\textwidth]{figures/Attenuation.pdf}
+%            \hline
+            \includegraphics[width=1\textwidth]{figures/Attenuation.pdf}
         \end{column}
     \vline~
         \begin{column}{0.4\textwidth} 
             $T$ -  transmittance\\
             $S(E_0, E)$ - response function\\
-            $\mu(E,z)$ - attenuation coefficient\\
+            $\mu(E,z)$ - attenuation\\
             $t$ -  optical thickness\\
             $E_0$ -  up-limit energy of bremsstrahlung\\
             $E$ - energy of gamma ray\\
+            $z$ - charge of nuclei 
+%            \hline
+            \includegraphics[width=1\textwidth]{figures/Bremsstrahlung.pdf}
         \end{column}
     \end{columns}  
 \end{frame}
 
 \begin{frame}
-    \frametitle{Methodology: Exist solution}
-    \begin{block}{Dual energy method}
+    \frametitle{Methodology: Existing solution}
+    \begin{block}{Dual energy method}%<1>
         
         $$
         F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
         $$
     \end{block}
 
-    \begin{block}{Disadvantages}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Methodology: Disadvantages and proposition}
+    \begin{block}{Disadvantages of dual energy method}%<1>
         \begin{itemize}
-            содержимое...
+            \item It is difficult expose on the target with beams with different energy.
+            \item Low efficiency for target which contain elements with strongly differing charges
         \end{itemize}
     \end{block}
-%    \begin{columns}
-%        \begin{column}{0.9\textwidth}
-%
-%        \end{column}
-%         \begin{column}{0.4\textwidth}
-%           
-%            
-%        \end{column}
-%    \end{columns} 
+    \begin{block}{Our proposition}%<2>
+        \begin{itemize}
+            \item Use only one electron beam with energy 10 MeV.
+            \item Measure not only space distribution, but also energy of gamma ray.
+        \end{itemize}
+    \end{block}
 \end{frame}
+%-------------Моделирование 1 часть -------------------
+    \begin{frame}
+    \frametitle{Simulation: First schema}
+    \begin{columns}
+%        \begin{column}{0.4\textwidth}
+%            \begin{itemize}
+%                \item 
+%                \item 
+%                \item 
+%                
+%            \end{itemize}
+%        \end{column}
+        \begin{column}{1\textwidth} 
+            \includegraphics[width=1\textwidth]{figures/yed_schema_1.pdf}
+        \end{column}
+    \end{columns}  
+\end{frame}
+
+\begin{frame}
+    \frametitle{Simulation: Some examples}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            Very dangerous item\\
+            \includegraphics[width=1\textwidth]{figures/Sword.pdf}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Uranium cube ( 6cm) in lead sphere (thickness - 1 cm)\\
+            \includegraphics[width=1\textwidth]{figures/sim_cube_in_orb.jpeg}
+        \end{column}
+    \end{columns}  
+\end{frame}
+
+\begin{frame}
+    \frametitle{Simulation: Some examples}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering Explosive search\\
+            \includegraphics[width=1\textwidth]{figures/sim_hexogen.jpeg}
+            
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Comparison of energy spectrum for aluminium and uranium orb.\\
+            \includegraphics[width=1\textwidth]{figures/Difference.pdf}
+        \end{column}
+    \end{columns}  
+\end{frame}
+
+\begin{frame}
+    \frametitle{Simulation: Some examples}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            Energy deposit in detector cells for several material\\
+            \includegraphics[width=1\textwidth]{figures/sim_1.jpeg}
+            
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            N - number of detector cells
+            $$
+           \frac{N[E_{dep} < 3~MeV]}
+            {N[E_{dep} > 3~MeV]}
+            $$
+       
+            \includegraphics[width=1\textwidth]{figures/sim_2.jpeg}
+        \end{column}
+    \end{columns}  
+\end{frame}
+%-------------Моделирование, часть 2 --------------------------
+
+
 %-------------Экспериментальная часть--------------------------
 \begin{frame}
     \frametitle{Experiment: Energy resolution of detector}
@@ -88,12 +181,12 @@
     \frametitle{Experiment: Energy resolution of detector}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            $^{22}Na$ --- $0.511 MeV$\\
+            $^{22}Na$ --- $0.511~MeV$\\
             \includegraphics[width=1\textwidth]{figures/setup3.png}
             
         \end{column}
                 \begin{column}{0.5\textwidth}
-                    $^{22}Na$ --- $1.275 MeV$\\
+                    $^{22}Na$ --- $1.275~MeV$\\
             \includegraphics[width=1\textwidth]{figures/setup4.png}
         \end{column}
     \end{columns} 
