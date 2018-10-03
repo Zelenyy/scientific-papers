@@ -48,7 +48,7 @@
     \begin{columns}
         \begin{column}{0.7\textwidth}
             $$
-            T(E_0, t, z) = \frac{\int \limits_0^{E_0} S(E_0, E) \exp(-\mu(E,z)\times t)~dE)}{\int \limits_0^{E_0} S(E_0, E)~dE}
+            T(E_0, t, Z) = \frac{\int \limits_0^{E_0} S(E_0, E) \exp(-\mu(E,Z)\times t)~dE)}{\int \limits_0^{E_0} S(E_0, E)~dE}
             $$
 %            \hline
             \includegraphics[width=1\textwidth]{figures/Attenuation.pdf}
@@ -57,11 +57,11 @@
         \begin{column}{0.4\textwidth} 
             $T$ -  transmittance\\
             $S(E_0, E)$ - response function\\
-            $\mu(E,z)$ - attenuation\\
+            $\mu(E,Z)$ - attenuation\\
             $t$ -  optical thickness\\
             $E_0$ -  up-limit energy of bremsstrahlung\\
             $E$ - energy of gamma ray\\
-            $z$ - charge of nuclei 
+            $Z$ - charge of nuclei 
 %            \hline
             \includegraphics[width=1\textwidth]{figures/Bremsstrahlung.pdf}
         \end{column}
@@ -71,10 +71,16 @@
 \begin{frame}
     \frametitle{Methodology: Existing solution}
     \begin{block}{Dual energy method}%<1>
-        
-        $$
-        F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
-        $$
+        \begin{itemize}
+            \item We can't defined Z if optical thickness $t$ is unknown.
+            \item But we can use two electron beam with differing energy which give gamma ray with up-limit energy $E^{(1)}_0$ and $E^{(2)}_0$.
+            \item Then we can get Z as result of minimizing this function:
+            $$
+            F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
+            $$
+            \item This technique allow to carry scan object to one of four groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.
+        \end{itemize}
+
     \end{block}
 
 \end{frame}
@@ -96,7 +102,7 @@
 \end{frame}
 %-------------Моделирование 1 часть -------------------
     \begin{frame}
-    \frametitle{Simulation: First schema}
+    \frametitle{Simulation: Preliminary estimates}
     \begin{columns}
 %        \begin{column}{0.4\textwidth}
 %            \begin{itemize}
@@ -113,7 +119,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Simulation: Some examples}
+    \frametitle{Simulation: Preliminary estimates}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             Very dangerous item\\
@@ -127,7 +133,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Simulation: Some examples}
+    \frametitle{Simulation: Preliminary estimates}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \centering Explosive search\\
@@ -135,14 +141,14 @@
             
         \end{column}
         \begin{column}{0.5\textwidth}
-            Comparison of energy spectrum for aluminium and uranium orb.\\
+            Comparison of energy spectrum for aluminium and uranium orb (radius - 1 cm).\\
             \includegraphics[width=1\textwidth]{figures/Difference.pdf}
         \end{column}
     \end{columns}  
 \end{frame}
 
 \begin{frame}
-    \frametitle{Simulation: Some examples}
+    \frametitle{Simulation: Preliminary estimates}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             Energy deposit in detector cells for several material\\
@@ -161,7 +167,37 @@
     \end{columns}  
 \end{frame}
 %-------------Моделирование, часть 2 --------------------------
+    \begin{frame}
+    \frametitle{Simulation: Thickness reconstruction}
+    \begin{columns}
+        %        \begin{column}{0.4\textwidth}
+        %            \begin{itemize}
+        %                \item 
+        %                \item 
+        %                \item 
+        %                
+        %            \end{itemize}
+        %        \end{column}
+        \begin{column}{1\textwidth} 
+            \includegraphics[width=1\textwidth]{figures/yed_schema_2.pdf}
+        \end{column}
+    \end{columns}  
+\end{frame}
 
+    \begin{frame}
+        %3d -томография
+    \frametitle{Simulation: Perspectives}
+    \begin{columns}
+                \begin{column}{0.6\textwidth}
+                    \begin{itemize}
+                        \item 
+                        \item 
+                        \item 
+                        
+                    \end{itemize}
+                \end{column}
+    \end{columns}  
+\end{frame}
 
 %-------------Экспериментальная часть--------------------------
 \begin{frame}
@@ -169,7 +205,8 @@
     \begin{columns}
         \begin{column}{0.5\textwidth}
             
-            \includegraphics[width=1\textwidth]{figures/setup1.png}
+            \includegraphics[width=1\textwidth]{figures/setup1.png}\\
+            Experiment was conduct by Dr. Guber and Dr. Ivashkin.
         \end{column}
                 \begin{column}{0.5\textwidth}
             \includegraphics[width=1\textwidth]{figures/yed.pdf}
@@ -199,6 +236,7 @@
     \begin{column}{0.5\textwidth}
                 Sum of signals from 2 photodiode\\
                 Noise threshold: 100 KeV\\
+                ~\\
         \begin{tabular}[c]{|c|c|}
              \hline 
             Energy, MeV & Sigma/Mean \\
