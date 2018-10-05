@@ -168,34 +168,71 @@
 \end{frame}
 %-------------Моделирование, часть 2 --------------------------
     \begin{frame}
-    \frametitle{Simulation: Thickness reconstruction}
+    \frametitle{Simulation: Thickness reconstruction for one dimensional}
     \begin{columns}
-        %        \begin{column}{0.4\textwidth}
-        %            \begin{itemize}
-        %                \item 
-        %                \item 
-        %                \item 
-        %                
-        %            \end{itemize}
-        %        \end{column}
-        \begin{column}{1\textwidth} 
-            \includegraphics[width=1\textwidth]{figures/yed_schema_2.pdf}
+        \begin{column}{0.4\textwidth}
+            \begin{block}{Simple model}
+                Attenuation of gamma ray flux define as:
+                                        $$
+                \frac{N(E)}{N_0(E)} = \exp(-\sum_i \Sigma^{mean}_i(E)x_i)
+                $$
+                where $x_i$ --- thickness of $i$-layer, $\Sigma^{mean}_i$ --- mean cross-section for group of material, $N,~N_0$ - number of gamma.
+                \begin{itemize}
+                    \item Disregard secondary scattering.
+                    \item Disregard annihilation line.
+                \end{itemize}
+
+                   
+            \end{block}
+
+        \end{column}
+        \begin{column}{0.55\textwidth}
+                  \includegraphics[width=1\textwidth]{figures/yed_schema_2.pdf}
+                \begin{block}{Reconstruction algorithm}
+                    \begin{itemize}
+                        \item Full thickness is known.
+                        \item Find thickness using least squares:                  
+                        
+                    \end{itemize}
+                    $$
+                    \sum_E(\ln \frac{N(E)}{N_0(E)} + \sum_i \Sigma^{mean}_i(E)x_i))^2 \to min
+                    $$
+                \end{block}
+
+
         \end{column}
     \end{columns}  
+\end{frame}
+ \begin{frame}
+\frametitle{Simulation: Thickness reconstruction for  one dimensional}
+\begin{columns}
+            \begin{column}{0.4\textwidth}
+                \begin{itemize}
+                    \item Used Aluminium, Iron and Lead.
+                    \item Several sets of thickness with full thickness from 30 cm to 180 cm.
+                    \item Energy resolution of detector is 10 \%
+                    
+                \end{itemize}
+            \end{column}
+    \begin{column}{0.7\textwidth} 
+        \includegraphics[width=1\textwidth]{figures/relError.pdf}
+    \end{column}
+\end{columns}  
 \end{frame}
 
     \begin{frame}
         %3d -томография
     \frametitle{Simulation: Perspectives}
     \begin{columns}
-                \begin{column}{0.6\textwidth}
+                \begin{column}{1\textwidth}
                     \begin{itemize}
-                        \item 
-                        \item 
-                        \item 
-                        
+                        \item If we will use energy-space distribution we can develop algorithm for \textbf{3D-tomography} 
+                      
                     \end{itemize}
-                \end{column}
+
+                \includegraphics[width=1\textwidth]{figures/yed_schema_2.pdf}
+                
+            \end{column}
     \end{columns}  
 \end{frame}
 
@@ -259,30 +296,19 @@
 \begin{frame}
     \frametitle{Conclusions}
     
-    \begin{block}{Results}<1->
-%          Измерение спектра фотонов после прохождения контейнера позволяет
-%        идентифицировать в контейнере отдельные группы элементов по Z (легкие,
-%        средние, тяжелые) в одной экспозиции при одной фиксированной энергии
-%        электронов, оптимально вблизи 8 МэВ.     
+    \begin{block}{Results}%<1->   
     \begin{enumerate}
-        \item%<1-> Measurement of gamma ray spectrum allow recognize ...
-        \item%<2-> 
+        \item Measurement of gamma ray spectrum allow to identify cargo belonging to group with certain $Z_{eff}$ 
+        \item Also its allow to define thickness of layers from different element with accuracy about 25\% 
+        \item Studied energy resolution of detector based on BGO scintillator, for photodetector with full array of pixel expected energy resolution about 10\%
     \end{enumerate}
     \end{block}
 \begin{block}{Plans and perspectives}%<3->
+    With financial support can be developed:
     \begin{enumerate}
-        \item%<1-> Measurement of gamma ray spectrum allow recognize ...
-        \item%<2-> 
+        \item Program which check cargo of transport container   for compliance cargo manifest
+        \item Algorithm for 3D gamma-tomography.
     \end{enumerate}
-%   - получить объемные изображения объектов путем облучения контейнера под
-%   углом 45 градусов.
-%   
-%   - разработать программу обработки изображений для автоматического
-%   определения соответствия содержимого контейнера заявленной декларации о
-%   содержании груза.
-%   
-%   - провести измерения на ускорителе ЛУЭ-8 в условиях, близким к реальным
-%   условиям просвечивания контейнеров (скорость движения, и т.д.).
 \end{block}
 
 \end{frame}
