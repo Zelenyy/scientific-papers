@@ -1,0 +1,86 @@
+\documentclass[a4paper]{panl}
+\usepackage{cite}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{epsfig}
+\usepackage{multirow}
+
+
+\originalTeX
+%\russianTeX
+\begin{document}
+% Journal sections (see http://pkp.jinr.ru/index.php/PEPAN_LETTERS/about/editorialPolicies#focusAndScope)
+\issuearea{Physics of Elementary Particles and Atomic Nuclei. Theory}
+% or in Russian
+%\issuearea{ФИЗИКА ЭЛЕМЕНТАРНЫХ ЧАСТИЦ И АТОМНОГО ЯДРА. ТЕОРИЯ}
+
+\title{Chemical composition analysis for X-ray transport container scans.  \\ Анализ химического состава при сканировании транспортных контейнеров гамма-излучением}
+\maketitle
+\authors{A. Zelenaya$^{a}$, M. Zelenyi$^{a,b,}$\footnote{E-mail: mihail.zelenyy@phystech.edu}, A.A.Turinge$^{a}$,  V.G. Nedorezov$^{a}$\footnote{E-mail: vladimir@cpc.inr.ac.ru}}
+\from{$^{a}$\,Institute of Nuclear Research of RAS}
+\vspace{-3mm}
+\from{$^{b}$\,Moscow Institute of Physical and Technology  (SU)}
+
+\begin{abstract}
+% Russian translation of the abstract
+It is important for national security to control the movement of dangerous or strategically cargo such as explosives, radioactive materials, rare and precious metals. This control can be provided by scanning transport containers by gamma rays.
+In this report the existing technique for scanning (dual energy method) is considered and the alternative method based on measuring the energy distribution of gamma rays is proposed. For estimation perspectives of the proposing method, the  corresponding simulation was conducted by using the GEANT4 toolkit. The example of the algorithm of reconstruction the chemical composition of the scanned object is also considered. In addition the experiment for estimation energy resolution of the detector based on a scintillation crystal BGO and SiPM was carried out.\\
+\vspace{0.2cm}
+
+Для обеспечения национальной безопасности важен контроль перемещения опасных или стратегически важных грузов, таких как взрывчатые вещества, радиоактивные материалы, редкие и драгоценные металлы. Проводить такой контроль можно сканирую содержимое   транспортных контейнеров гамма излучением. В данной работе рассмотрена существующая методика дуальных энергий и предложен альтернативный способ, основанный на измерении энергетического распределения гамма-квантов. Для оценки было проведено моделирование с помощью транспортного кода GEANT4.  Также выполнен эксперимент по измерению энергетического разрешения детектора на основе сцинтиллирующего кристалла BGO и кремневого фотоумножителя. 
+\end{abstract}
+\vspace*{6pt}
+
+\noindent
+PACS: 02.70.$-$c; 23.20.Nx; 32.90.$+$a
+
+\label{sec:intro}
+\section*{Introduction}
+
+
+\label{sec:preparation}
+\section*{Paper Preparation}
+
+\section*{Conclusion}
+
+Results:   
+    \begin{enumerate}
+        \item The measurement of the gamma ray spectrum allows to identify cargo belonging to the group of materials with certain $Z_{eff}$.
+        \item Also it allows to define the thickness of layers from different elements with the accuracy about 25\%.
+        \item The energy resolution of the detector based on a BGO scintillator was studied.  For the photodetector with full array of pixels the energy resolution is expected about 10\%.
+    \end{enumerate}
+Plans and perspectives
+    With financial support can be developed:
+    \begin{enumerate}
+        \item The program which checks cargo of a transport container  for compliance cargo manifest
+        \item The algorithm for the 3D gamma-tomography.
+    \end{enumerate}
+
+This work is supported by the Ministry of Education and Science of the Russian Federation under the contract No. 3.3008.2017/PP.
+
+
+%============================= Fig. 1 ================================
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[width=127mm]{fig_1.eps} 
+%%\includegraphics[width=127mm]{fig_1.eps} 
+%\vspace{-3mm}
+%\caption{Figure caption}
+%\end{center}
+%\labelf{fig01}
+%\vspace{-5mm}
+%\end{figure}
+%============================= Fig. 1 ================================
+
+
+%\nocite{*}
+\bibliographystyle{pepan}
+\bibliography{pepan_biblio}
+
+\end{document}

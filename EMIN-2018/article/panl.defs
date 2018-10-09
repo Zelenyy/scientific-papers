@@ -1,0 +1,197 @@
+% File cyrlett.tex:
+
+
+%\renewcommand{\rmdefault}{wtm}
+%\renewcommand{\sfdefault}{whv}
+%\renewcommand{\ttdefault}{wco}
+%\renewcommand{\bfdefault}{b}
+
+%\let\l=\undefined
+%\let\L=\undefined
+%\let\j=\undefined
+
+\def\numerosign{}
+%\chardef\dagger="0A2
+%\chardef\ddaggerdbl="0F2
+%\chardef\trademark="0F9
+%\chardef\bullet="0AA
+%\chardef\degree="0FA
+%\chardef\ellipsis="0AB
+%\chardef\perthousand="0FB
+%\chardef\paragraph="0AD
+%\chardef\section="0FD
+%\chardef\copyright="0AC
+%\chardef\registered="0FC
+
+\def\SUcaptions{%
+  \def\prefacename{Предисловие}%
+  \def\refname{СПИСОК ЛИТЕРАТУРЫ}%
+  \def\abstractname{АННОТАЦИЯ}%
+  \def\bibname{Литература}%
+  \def\chaptername{Глава}%
+  \def\appendixname{Приложение}%
+  \def\contentsname{Содержание}%
+  \def\listfigurename{Список рисунков}%
+  \def\listtablename{Список таблиц}%
+  \def\indexname{ПРЕДМЕТНЫЙ УКАЗАТЕЛЬ}%
+  \def\figurename{Рис.}%
+  \def\tablename{{\it Таблица}}%
+  \def\partname{Часть}%
+  \def\enclname{вкл.}%
+  \def\ccname{из}%
+  \def\headtoname{в}%
+  \def\pagename{Стр.}%
+  \def\seename{см.}%
+  \def\alsoname{см.~тж.}
+  \def\today{\number\day\space\ifcase\month\or
+    января\or февраля\or марта\or апреля\or мая\or июня\or
+    июля\or августа\or сентября\or октября\or ноября\or декабря\fi
+    \space\number\year}}
+
+\def\UScaptions{%
+  \def\prefacename{Preface}%
+  \def\refname{REFERENCES}%
+  \def\abstractname{Abstract}%
+  \def\bibname{Bibliography}%
+  \def\chaptername{Chapter}%
+  \def\appendixname{Appendix}%
+  \def\contentsname{Contents}%
+  \def\listfigurename{List of Figures}%
+  \def\listtablename{List of Tables}%
+  \def\indexname{Index}%
+  \def\figurename{Fig.}%
+  \def\tablename{{\it Table}}%
+  \def\partname{Part}%
+  \def\enclname{encl}%
+  \def\ccname{cc}%
+  \def\headtoname{To}%
+  \def\pagename{Page}%
+  \def\seename{see}%
+  \def\alsoname{see also}
+  \def\today{\ifcase\month\or
+    January\or February\or March\or April\or May\or June\or
+    July\or August\or September\or October\or November\or December\fi
+    \space\number\day, \number\year}}
+
+\def\russianTeX{\SUcaptions}
+\def\originalTeX{\UScaptions}
+
+\russianTeX
+%\issue{year}{ordinal number}{number}{brief title}{brief authors}{YDK index}{volume}{first page}{last page}
+\let\@titlemark\relax
+\let\@YDK\relax
+\let\@YDKAREA\relax
+\def\issuearea#1{\gdef\@YDKAREA{#1}}
+\def\issue#1#2#3#4#5#6#7#8#9{%
+    \gdef\@titlemark{\parbox{\textwidth}{\vskip-5.85pt\small
+    \centerline{Письма в ЭЧАЯ. #1 Т.\,#7, \numerosign #3(#2). С.\,#8--#9}\vskip-7.5pt}}
+    \markboth{#5}{#4}
+    \gdef\@YDK{#6}}
+
+\def\ps@ruleheadings{\let\@mkboth\@gobbletwo
+  \def\@oddhead{\parbox{\textwidth}{\small\it
+    \hfill\rightmark\ \ \rm\thepage}}
+  \def\@evenhead{\parbox{\textwidth}{\small\rm
+    \thepage\ \ \it\leftmark\hfill}}
+  \let\@oddfoot\@empty\let\@evenfoot\@empty}
+
+\def\ps@titleheadings{\let\@mkboth\@gobbletwo
+  \def\@oddhead{\hfill\@titlemark\hfill}\let\@evenhead\@oddhead
+  \let\@oddfoot\@empty\let\@evenfoot\@empty}
+
+\def\authors#1{\centerline{\large\it #1}}
+\def\from#1{%
+%  \vspace{-15pt}
+  \vspace{-0.5\baselineskip}%
+  \begin{center}%
+    {\small #1\par}
+  \end{center}}%\par}
+
+\def\@biblabel#1{\hfill#1.}
+\def\@seccntformat#1{\csname the#1\endcsname.\ }
+
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup #6\relax
+    \begin{center}
+      {\@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M #8\@@par}%
+    \end{center}
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \addcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\csname the#1\endcsname}%
+      \fi
+      #7}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+        #7}}%
+  \fi
+  \@xsect{#5}}
+
+\def\@ssect#1#2#3#4#5{%
+  \@tempskipa #3\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup #4\relax
+    \begin{center}
+         {\@hangfrom{\hskip #1}%
+          \interlinepenalty \@M #5\@@par}%
+    \end{center}
+    \endgroup
+  \else
+    \def\@svsechd{#4{\hskip #1\relax #5}}%
+  \fi
+  \@xsect{#3}}
+
+\@addtoreset{footnote}{page}
+\def\@fnsymbol#1{\ifcase#1\or 1\or 2\or 3\or 4\or 5
+ \or 6\or 7\or 8\or 9\or 10 \or 11\or 12\or 13\or 14\or 15
+ \or 16\or 17\or 18\or 19\or 20\or 21\or 22\or 23\or 24\or 25\or 26\or
+ 27\or 28\or 29\or 30\or 31\or 32\or 33\or 34\or 35\or 36\or 37\or 38\or
+ 39\or 40\or 41\or 42\or 43\or 44\or 45\or 46\or 47\or 48\or 49\or 50
+ \else\@ctrerr\fi\relax}      % Redefine '\@fnsymbol'
+
+\def\labele#1{\@bsphack
+  \protected@write\@auxout{}%
+         {\string\newlabel{#1}{{\theequation}}}%
+  \@esphack}
+\def\labelf#1{\@bsphack
+  \protected@write\@auxout{}%
+         {\string\newlabel{#1}{{\thefigure}}}%
+  \@esphack}
+\def\labelt#1{\@bsphack
+  \protected@write\@auxout{}%
+         {\string\newlabel{#1}{{\thetable}}}%
+  \@esphack}
+\def\captionf#1#2{\global\advance\c@figure\@ne\labelf{fig:#1}%
+% \vskip\abovecaptionskip
+ \@parboxrestore\normalsize
+  \sbox\@tempboxa{\small\figurename~\thefigure.~#2}%
+  \ifdim \wd\@tempboxa >\hsize
+      \small\figurename~\thefigure.~#2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\box\@tempboxa\hfil}%
+  \fi}
+
+\def\capdot{. }
+\def\oncapdot{\def\capdot{. }}
+\def\offcapdot{\def\capdot{}}
+
+\endinput
+
