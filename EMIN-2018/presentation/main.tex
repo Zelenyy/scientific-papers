@@ -7,6 +7,22 @@
 
 \usetheme{default}
 \usepackage{graphicx}
+
+
+\setbeamertemplate{footline}
+{
+    \leavevmode%
+    \hbox{%
+%        \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%            \usebeamerfont{author in head/foot}\insertshortauthor
+%        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%            \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+            \flushright{\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}}%\hspace*{1ex}
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
+
 \begin{document}
     \author{A. Zelenaya \inst{1}, M. Zelenyi \inst{1,2}, A.A.Turinge \inst{1},  V.G. Nedorezov \inst{1}}
     \title{Chemical composition analysis for X-ray transport container scans. }
@@ -18,8 +34,8 @@
     }
     \date{October 10, 2018}
 %    \subject{Moscow}
-    %\setbeamercovered{transparent}
-    %\setbeamertemplate{navigation symbols}{}
+    \setbeamercovered{transparent}
+    \setbeamertemplate{navigation symbols}{}
     \frame[plain]{\maketitle}
     
     \begin{frame}
@@ -27,13 +43,13 @@
             \begin{columns}
             \begin{column}{0.6\textwidth}
                 \begin{itemize}
-                    \item For fight against crime, control of transport containers is important.
-                    \item For exploring transport containers can be used gamma ray produced by bremsstrahlung
+                    \item It is important for national security to control the movement of dangerous or strategically cargo.
+                    \item This control can be provided by scanning transport containers by gamma rays produced by bremsstrahlung.
                     \item In this report we consider:
                         \begin{itemize}
-                            \item Methodology, existing solution and out proposition.
-                            \item GEANT4 simulation of gamma ray scans.
-                            \item Measurement resolution of gamma  ray detector
+                            \item Methodology, existing solution and our proposing method;
+                            \item GEANT4 simulation of gamma rays scanning;
+                            \item Measurement resolution of gamma rays detector.
                         \end{itemize}
                    
                 \end{itemize}
@@ -73,12 +89,12 @@
     \begin{block}{Dual energy method}%<1>
         \begin{itemize}
             \item We can't defined Z if optical thickness $t$ is unknown.
-            \item But we can use two electron beam with differing energy which give gamma ray with up-limit energy $E^{(1)}_0$ and $E^{(2)}_0$.
-            \item Then we can get Z as result of minimizing this function:
+            \item But we can use two electron beams with different energy which give gamma rays with up-limit energy $E^{(1)}_0$ and $E^{(2)}_0$.
+            \item Then we can get Z as a result of minimizing this function:
             $$
             F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
             $$
-            \item This technique allow to carry scan object to one of four groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.
+            \item This technique allows to determine scan object as a one from four possible groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.
         \end{itemize}
 
     \end{block}
@@ -86,17 +102,17 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Methodology: Disadvantages and proposition}
+    \frametitle{Methodology: Disadvantages and proposing method}
     \begin{block}{Disadvantages of dual energy method}%<1>
         \begin{itemize}
-            \item It is difficult expose on the target with beams with different energy.
-            \item Low efficiency for target which contain elements with strongly differing charges
+            \item It is too difficult to irradiate the target with beams with different energy.
+            \item Low efficiency for target which contains elements with strongly different charges.
         \end{itemize}
     \end{block}
-    \begin{block}{Our proposition}%<2>
+    \begin{block}{Our method}%<2>
         \begin{itemize}
-            \item Use only one electron beam with energy 10 MeV.
-            \item Measure not only space distribution, but also energy of gamma ray.
+            \item Use only one electron beam with energy $E = 10 MeV$.
+            \item Measure not only the space distribution, but also the energy of gamma rays.
         \end{itemize}
     \end{block}
 \end{frame}
@@ -126,7 +142,7 @@
             \includegraphics[width=1\textwidth]{figures/Sword.pdf}
         \end{column}
         \begin{column}{0.5\textwidth}
-            Uranium cube ( 6cm) in lead sphere (thickness - 1 cm)\\
+            Uranium cube (6cm) in a lead sphere (thickness -- 1 cm)\\
             \includegraphics[width=1\textwidth]{figures/sim_cube_in_orb.jpeg}
         \end{column}
     \end{columns}  
@@ -136,12 +152,12 @@
     \frametitle{Simulation: Preliminary estimates}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \centering Explosive search\\
+            \centering Search of the explosive\\
             \includegraphics[width=1\textwidth]{figures/sim_hexogen.jpeg}
             
         \end{column}
         \begin{column}{0.5\textwidth}
-            Comparison of energy spectrum for aluminium and uranium orb (radius - 1 cm).\\
+            Comparison the energy spectrum for aluminium and uranium orb (radius -- 1 cm).\\
             \includegraphics[width=1\textwidth]{figures/Difference.pdf}
         \end{column}
     \end{columns}  
@@ -151,12 +167,12 @@
     \frametitle{Simulation: Preliminary estimates}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            Energy deposit in detector cells for several material\\
+            The energy deposit in detector cells for several materials\\
             \includegraphics[width=1\textwidth]{figures/sim_1.jpeg}
             
         \end{column}
         \begin{column}{0.5\textwidth}
-            N - number of detector cells
+            N -- number of detector cells
             $$
            \frac{N[E_{dep} < 3~MeV]}
             {N[E_{dep} > 3~MeV]}
@@ -168,18 +184,18 @@
 \end{frame}
 %-------------Моделирование, часть 2 --------------------------
     \begin{frame}
-    \frametitle{Simulation: Thickness reconstruction for one dimensional}
+    \frametitle{Simulation: Thickness reconstruction for the 1-D case}
     \begin{columns}
         \begin{column}{0.4\textwidth}
             \begin{block}{Simple model}
-                Attenuation of gamma ray flux define as:
+                Attenuation of gamma ray flux is defined as:
                                         $$
                 \frac{N(E)}{N_0(E)} = \exp(-\sum_i \Sigma^{mean}_i(E)x_i)
                 $$
-                where $x_i$ --- thickness of $i$-layer, $\Sigma^{mean}_i$ --- mean cross-section for group of material, $N,~N_0$ - number of gamma.
+                where $x_i$ --- thickness of the $i$-layer, $\Sigma^{mean}_i$ --- mean cross-section for group of materials, $N,~N_0$ --- the number of gamma.
                 \begin{itemize}
                     \item Disregard secondary scattering.
-                    \item Disregard annihilation line.
+                    \item Disregard the annihilation line.
                 \end{itemize}
 
                    
@@ -203,14 +219,49 @@
         \end{column}
     \end{columns}  
 \end{frame}
+
  \begin{frame}
-\frametitle{Simulation: Thickness reconstruction for  one dimensional}
+    \frametitle{Thickness reconstruction: Example}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+          We consider the object which has 3 layers of aluminium, iron and lead.\\
+          The figure shows a contribution of every reconstructed material in summary attenuation. \\
+          The table contains the results of reconstruction.
+         
+        \end{column}
+        \begin{column}{0.7\textwidth} 
+            \includegraphics[width=1\textwidth]{figures/reconstruction.pdf}
+        \end{column}
+    \end{columns}  
+\begin{columns}
+        \begin{column}{0.5\textwidth}
+    
+    
+    \begin{tabular}[c]{|c|c|c|}
+        \hline 
+        Material & Real, cm & Reconstructed, cm \\ 
+        \hline 
+        Al & 20 & 19.6 \\ 
+        \hline 
+        Fe & 40 & 41.6 \\ 
+        \hline 
+        Pb & 30 & 28.7 \\ 
+        \hline 
+    \end{tabular}
+    
+\end{column}
+\end{columns}  
+\end{frame}
+
+ \begin{frame}
+\frametitle{Simulation: Thickness reconstruction for the 1-D case}
 \begin{columns}
             \begin{column}{0.4\textwidth}
+                Also we conducted several numeric experiments for different thickness.
                 \begin{itemize}
-                    \item Used Aluminium, Iron and Lead.
+                    \item Aluminium, Iron and Lead are used.
                     \item Several sets of thickness with full thickness from 30 cm to 180 cm.
-                    \item Energy resolution of detector is 10 \%
+                    \item The energy grid spacing emulates the detector with  10 \% resolution. 
                     
                 \end{itemize}
             \end{column}
@@ -226,7 +277,7 @@
     \begin{columns}
                 \begin{column}{1\textwidth}
                     \begin{itemize}
-                        \item If we will use energy-space distribution we can develop algorithm for \textbf{3D-tomography} 
+                        \item If we use energy-space distribution we can develop the algorithm for the \textbf{3D-tomography} 
                       
                     \end{itemize}
 
@@ -238,12 +289,12 @@
 
 %-------------Экспериментальная часть--------------------------
 \begin{frame}
-    \frametitle{Experiment: Energy resolution of detector}
+    \frametitle{Experiment: Energy resolution of the detector}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             
             \includegraphics[width=1\textwidth]{figures/setup1.png}\\
-            Experiment was conduct by Dr. Guber and Dr. Ivashkin.
+            The experiment was conducted by Dr. Guber and Dr. Ivashkin.
         \end{column}
                 \begin{column}{0.5\textwidth}
             \includegraphics[width=1\textwidth]{figures/yed.pdf}
@@ -252,7 +303,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Experiment: Energy resolution of detector}
+    \frametitle{Experiment: Energy resolution of the detector}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             $^{22}Na$ --- $0.511~MeV$\\
@@ -271,7 +322,7 @@
         \includegraphics[width=1\textwidth]{figures/setup2.png}
     \end{column}
     \begin{column}{0.5\textwidth}
-                Sum of signals from 2 photodiode\\
+                The sum of signals from 2 photodiode\\
                 Noise threshold: 100 KeV\\
                 ~\\
         \begin{tabular}[c]{|c|c|}
@@ -294,27 +345,27 @@
 
 %--------------- Выводы ----------------
 \begin{frame}
-    \frametitle{Conclusions}
+    \frametitle{Conclusion}
     
     \begin{block}{Results}%<1->   
     \begin{enumerate}
-        \item Measurement of gamma ray spectrum allow to identify cargo belonging to group with certain $Z_{eff}$ 
-        \item Also its allow to define thickness of layers from different element with accuracy about 25\% 
-        \item Studied energy resolution of detector based on BGO scintillator, for photodetector with full array of pixel expected energy resolution about 10\%
+        \item The measurement of the gamma ray spectrum allows to identify cargo belonging to the group of materials with certain $Z_{eff}$.
+        \item Also it allows to define the thickness of layers from different elements with the accuracy about 25\%.
+        \item The energy resolution of the detector based on a BGO scintillator was studied.  For the photodetector with full array of pixels the energy resolution is expected about 10\%.
     \end{enumerate}
     \end{block}
 \begin{block}{Plans and perspectives}%<3->
     With financial support can be developed:
     \begin{enumerate}
-        \item Program which check cargo of transport container   for compliance cargo manifest
-        \item Algorithm for 3D gamma-tomography.
+        \item The program which checks cargo of a transport container  for compliance cargo manifest
+        \item The algorithm for the 3D gamma-tomography.
     \end{enumerate}
 \end{block}
 
 \end{frame}
 
 \begin{frame}
-    \frametitle{Thank for you attention}
+    \frametitle{Thank you for your attention}
             \includegraphics[width=1\textwidth]{figures/Attenuation.pdf}
 \end{frame}
 
