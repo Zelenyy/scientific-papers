@@ -43,9 +43,10 @@ In this report the existing technique for scanning (dual energy method) is consi
 \noindent
 PACS: 02.70.$-$c; 23.20.Nx; 32.90.$+$a
 
+\newpage
 \label{sec:intro}
 \section*{Introduction}
-\newpage
+Geant4~\cite{ALLISON2016186, spirin}
 \section*{Dual energy method}
 
 
@@ -63,23 +64,23 @@ PACS: 02.70.$-$c; 23.20.Nx; 32.90.$+$a
 \end{figure}
 
             $$
-T(E_0, t, Z) = \frac{\int \limits_0^{E_0} S(E_0, E) \exp(-\mu(E,Z)\times t)~dE)}{\int \limits_0^{E_0} S(E_0, E)~dE}
+T(E_0, t, Z) = \frac{\int \limits_0^{E_0} S(E_0, E) \exp(-\mu(E,Z)\times t)~dE)}{\int \limits_0^{E_0} S(E_0, E)~dE},
 $$
-            $T$ -  transmittance, $S(E_0, E)$ - response function\\
-$\mu(E,Z)$ - attenuation\\
-$t$ -  optical thickness\\
-$E_0$ -  up-limit energy of bremsstrahlung\\
-$E$ - energy of gamma ray\\
-$Z$ - charge of nuclei 
-        \begin{itemize}
-    \item We can't defined Z if optical thickness $t$ is unknown.
-    \item But we can use two electron beams with different energy which give gamma rays with up-limit energy $E^{(1)}_0$ and $E^{(2)}_0$.
-    \item Then we can get Z as a result of minimizing this function:
+where
+$T$ -  transmittance,
+$S(E_0, E)$ - response function,
+$\mu(E,Z)$ - attenuation,
+$t$ -  optical thickness,
+$E_0$ -  up-limit energy of bremsstrahlung,
+$E$ - energy of gamma ray,
+$Z$ - charge of nuclei.
+We can't defined Z if optical thickness $t$ is unknown.
+But we can use two electron beams with different energy which give gamma rays with up-limit energy $E^{(1)}_0$ and $E^{(2)}_0$.
+ Then we can get Z as a result of minimizing this function:
     $$
     F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
     $$
-    \item This technique allows to determine scan object as a one from four possible groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.
-\end{itemize}
+This technique allows to determine scan object as a one from four possible groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.\\
 Disadvantages of dual energy method
     \begin{itemize}
         \item It is too difficult to irradiate the target with beams with different energy.
@@ -95,7 +96,7 @@ Our method
 \begin{figure}[t]
     \begin{center}
         % Сделать подписи к отдельным картинкам
-        \includegraphics[width=120mm]{figures/yed_schema_1.pdf}  
+        \includegraphics[width=120mm]{figures/yed_schema_1.pdf}
         \vspace{-3mm}
         \caption{a) }
     \end{center}
@@ -127,38 +128,38 @@ Our method
     \vspace{-5mm}
 \end{figure}
 
-
-\section*{Thickness reconstruction}
-
 \begin{figure}[t]
     \begin{center}
         % Сделать подписи к отдельным картинкам
-        \includegraphics[width=120mm]{figures/yed_schema_2.pdf}  
+        % Переделать картинку от Туринге
+        \includegraphics[width=60mm]{figures/UranCube1.pdf} 
+        \includegraphics[width=60mm]{figures/UranCube2.pdf}  
         \vspace{-3mm}
-        \caption{a) }
+        \caption{a) b)}
     \end{center}
     \labelf{fig01}
     \vspace{-5mm}
 \end{figure}
-                Attenuation of gamma ray flux is defined as:
-$$
-\frac{N(E)}{N_0(E)} = \exp(-\sum_i \Sigma^{mean}_i(E)x_i)
-$$
-where $x_i$ --- thickness of the $i$-layer, $\Sigma^{mean}_i$ --- mean cross-section for group of materials, $N,~N_0$ --- the number of gamma.
-\begin{itemize}
-    \item Disregard secondary scattering.
-    \item Disregard the annihilation line.
-\end{itemize}
 
-                    \begin{itemize}
-    \item Full thickness is known.
-    \item Find thickness using least squares:                  
-    
-\end{itemize}
-$$
+\section*{Thickness reconstruction}
+\begin{wrapfigure}[8]{r}{0.6\linewidth} 
+    % Сделать подписи к отдельным картинкам
+    \includegraphics[width=\linewidth]{figures/yed_schema_2.pdf}
+    \vspace{-3mm}
+    \caption{ Thickness reconstruction}
+    \labelf{schema2}
+    \vspace{-5mm}
+\end{wrapfigure}
+Мы будем рассматривать одномерный случай, когда гамма-кванты проходят скозь стопку из нескольких материалов с фиксированной полной толщиной и нам нужно восстановить толщины отдельных материалов (см. схему ~\ref{scema2}). Мы будем использовать простую физическую модель в которой ослабление задается  следующей формулой: 
+\begin{equation}
+\label{eq:gamma}
+\frac{N(E)}{N_0(E)} = \exp(-\sum_i \Sigma^{mean}_i(E)x_i),
+\end{equation}
+where $x_i$ --- thickness of the $i$-layer, $\Sigma^{mean}_i$ --- mean cross-section for group of materials with близкими зарядами ядра, $N,~N_0$ --- the number of gamma.При этом мы не будем учитывать множественное рассеяние и наличие аннигиляционной линии. Мы считаем что полная толщина известна и для восстановления толщин отдельных слоев мы будем использовать метод наименьших квадратов, то есть минимизировать такую сумму:
+\begin{equation}
 \sum_E(\ln \frac{N(E)}{N_0(E)} + \sum_i \Sigma^{mean}_i(E)x_i))^2 \to min
-$$
-
+\end{equation}
+Далее приведен пример работы алгоритма. We consider the object which has 3 layers of aluminium, iron and lead.The figure ~\ref{rec:ex} shows a contribution of every reconstructed material in summary attenuation. The table ~\ref{tab:rec} contains the results of reconstruction.
 \begin{figure}[t]
     \begin{center}
         % Сделать подписи к отдельным картинкам
@@ -167,38 +168,63 @@ $$
         \vspace{-3mm}
         \caption{a) b)Distribution of reconstruction errors for various numerical experiments}
     \end{center}
-    \labelf{fig01}
+    \labelf{rec:ex}
     \vspace{-5mm}
 \end{figure}
 
+\begin{table}
+\begin{center}
+        \begin{tabular}[c]{|c|c|c|}
+        \hline 
+        Material & Real, cm & Reconstructed, cm \\ 
+        \hline 
+        Al & 20 & 19.6 \\ 
+        \hline 
+        Fe & 40 & 41.6 \\ 
+        \hline 
+        Pb & 30 & 28.7 \\ 
+        \hline 
+    \end{tabular}
+\end{center}
+\caption{Example of thickness reconstruction}
+    \label{tab:rec}
+\end{table}
+
+
 \section*{Experiment}
+\begin{wrapfigure}[20]{r}{0.5\linewidth} 
+    % Сделать подписи к отдельным картинкам
+    \includegraphics[width=\linewidth]{figures/yed.pdf}  
+    \vspace{-3mm}
+    \caption{Schema of experiment}
+    \labelf{pic:experiment}
+    \vspace{-5mm}
+\end{wrapfigure}
+Кроме моделирования, доктором Губером и доктором Ивашкины, проведены измерения энергического разрешения детектора  для регистрации гамма излучения. Схема эксперимента приведена на рисунке~\ref{pic:experiment}. В работе использовались сцинтиллятор BGO размером 10х30х100мм и фотодетектор ArrayC-60035-4P. Проводились измерения спектров от источников $\beta$– излучения (Na-22 и Cs-137). Энергии излучения 0.511 МэВ и 1.275 МэВ для Na и 0.662 МэВ для Cs. В качестве фотодетектора использовалась матрица из четырех фотодиодов ArrayC-60035-4P с размером фотодиода 6х6мм, снабженная индивидуальным предусилителем с коэффициентом усиления 150. В процессе работы измерялся суммарный сигнал с двух фотодиодов матрицы. Сигнал c матрицы подавался на усилитель (ORTEC 579) и затем поступал на входной канал АЦП (CAEN DT5742) и на дискриминатор (CAEN mod.224), логический сигнал которого служил триггером в системе. В отсутствие источника шкала АЦП была прокалибрована в абсолютных единицах – числе фотоэлектронов. Результат измерения энергитического разрешения приведен в таблице ~\ref{tab:ex}
+
 The experiment was conducted by Dr. Guber and Dr. Ivashkin.
 The sum of signals from 2 photodiode\\
 Noise threshold: 100 KeV\\
-\begin{center}
-    \begin{tabular}[c]{|c|c|c|}
-    \hline 
-    Source & Energy, MeV & Sigma/Mean \\
-    \hline 
-    $^{22}Na$&0.511 & 14.7\%  \\ 
-    \hline 
-    $^{137}Cs$&0.662 & 19\%\\ 
-    \hline 
-    $^{22}Na$& 1.275 & 13\% \\
-    \hline 
-\end{tabular} 
-\end{center}
-
-\begin{figure}[t]
-    \begin{center}
-        % Сделать подписи к отдельным картинкам
-        \includegraphics[width=80mm]{figures/yed.pdf}  
-        \vspace{-3mm}
-        \caption{a) }
+\begin{table}
+    \begin{center} 
+        \begin{tabular}[c]{|c|c|c|}
+            
+            \hline 
+            Source & Energy, MeV & Sigma/Mean \\
+            \hline 
+            $^{22}Na$&0.511 & 14.7\%  \\ 
+            \hline 
+            $^{137}Cs$&0.662 & 19\%\\ 
+            \hline 
+            $^{22}Na$& 1.275 & 13\% \\
+            \hline 
+        \end{tabular} 
     \end{center}
-    \labelf{fig01}
-    \vspace{-5mm}
-\end{figure}
+\caption{Energy resolution of detector}
+\label{tab:ex}
+\end{table}
+
+
 \section*{Conclusion}
 % Выводы сделать более твердыми и акцентирванными
 Results:   
@@ -233,6 +259,6 @@ This work is supported by the Ministry of Education and Science of the Russian F
 
 %\nocite{*}
 \bibliographystyle{pepan}
-\bibliography{pepan_biblio}
+\bibliography{references.bib}
 
 \end{document}
