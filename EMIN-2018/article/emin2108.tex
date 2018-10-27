@@ -48,9 +48,13 @@ PACS: 02.70.$-$c; 23.20.Nx; 32.90.$+$a
 \section*{Introduction}
 Geant4~\cite{ALLISON2016186, spirin}
 \section*{Dual energy method}
-
-
-
+Consider how the flux of gamma rays decreases. Прозрачность (transmittance) описывается следующей формулой:
+\begin{equation}
+\label{eq:trans}
+T(E_0, t, Z) = \frac{\int \limits_0^{E_0} S(E_0, E) \exp(-\mu(E,Z)\times t)~dE)}{\int \limits_0^{E_0} S(E_0, E)~dE},
+\end{equation}
+where $T$ -  transmittance, $S(E_0, E)$ - response function, $\mu(E,Z)$ - attenuation, $t$ -  optical thickness of material, $E_0$ -  up-limit energy of bremsstrahlung, $E$ - energy of gamma ray, $Z$ - charge of nuclei.
+We assume that bremsstrahlung is used as a source of gamma rays, with a spectrum, for example, as in figure~\ref{fig01}b and with the maximum energy depending on the energy of the electron beam. Our transmittance also depends on the mean material attenuation coefficient. Figure~\ref{fig01}a shows the dependence of the attenuation coefficient on energy for different materials. We can distinguish three areas: the initial one in which the photoelectric effect dominates and only materials with a large nuclear charge stand out; the average in which Compton scattering dominates and materials are not distinguishable, and the area where the main influence is produced by the production of electron-positron pairs, and the materials are quite well distinguishable. The last area can be used for the dual energy method.
 \begin{figure}[t]
 \begin{center}
     % Сделать подписи к отдельным картинкам
@@ -62,31 +66,17 @@ Geant4~\cite{ALLISON2016186, spirin}
 \labelf{fig01}
 \vspace{-5mm}
 \end{figure}
-
-            $$
-T(E_0, t, Z) = \frac{\int \limits_0^{E_0} S(E_0, E) \exp(-\mu(E,Z)\times t)~dE)}{\int \limits_0^{E_0} S(E_0, E)~dE},
-$$
-where
-$T$ -  transmittance,
-$S(E_0, E)$ - response function,
-$\mu(E,Z)$ - attenuation,
-$t$ -  optical thickness,
-$E_0$ -  up-limit energy of bremsstrahlung,
-$E$ - energy of gamma ray,
-$Z$ - charge of nuclei.
-We can't defined Z if optical thickness $t$ is unknown.
-But we can use two electron beams with different energy which give gamma rays with up-limit energy $E^{(1)}_0$ and $E^{(2)}_0$.
- Then we can get Z as a result of minimizing this function:
-    $$
-    F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
-    $$
-This technique allows to determine scan object as a one from four possible groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.\\
-Disadvantages of dual energy method
+The dual energy method is based on using two electron beams with different energies. Since the equation from the previous slide does not determine the nuclear charge, if the optical thickness of the material is not known, to solve this problem, we consider the transmittance for the two limit energies of gamma rays $E^{(1)}_0$ and $E^{(2)}_0$, and then minimizing this functional:
+\begin{equation}
+F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
+\end{equation}
+we exclude unknown optical thickness from consideration and determine the average charge of the material. This method allows to determine which of these four groups the scanned object belongs to. This technique allows to determine scan object as a one from four possible groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.\\
+This method has several disadvantages:
     \begin{itemize}
         \item It is too difficult to irradiate the target with beams with different energy.
         \item Low efficiency for target which contains elements with strongly different charges.
     \end{itemize}
-Our method
+Therefore, we offer an alternative method:
     \begin{itemize}
         \item Use only one electron beam with energy $E = 10 MeV$.
         \item Measure not only the space distribution, but also the energy of gamma rays.
@@ -100,26 +90,17 @@ Our method
         \vspace{-3mm}
         \caption{a) }
     \end{center}
-    \labelf{fig01}
+    \labelf{pic:schema1}
     \vspace{-5mm}
 \end{figure}
+For evaluation, we conducted several simulations using the scheme (fig.~\ref{pic:schema1}):
+An electron beam with the energy of 10 MeV collides with a wolfram converter, producing a bremsstrahlung that irradiates a steel two-meter container, inside which the object under study is located and is detected by a detector. Расcтояние между вольфрамовым конвертером и контейнером два метра, между контернером и детектором 10 см. 
+
 \begin{figure}[t]
     \begin{center}
         % Сделать подписи к отдельным картинкам
         % Переделать картинку от Туринге
         \includegraphics[width=60mm]{figures/Sword.pdf} 
-        \includegraphics[width=60mm]{figures/Sword.pdf}  
-        \vspace{-3mm}
-        \caption{a) b)}
-    \end{center}
-    \labelf{fig01}
-    \vspace{-5mm}
-\end{figure}
-\begin{figure}[t]
-    \begin{center}
-        % Сделать подписи к отдельным картинкам
-        % Переделать картинку от Туринге
-        \includegraphics[width=60mm]{figures/Difference.pdf} 
         \includegraphics[width=60mm]{figures/Difference.pdf}  
         \vspace{-3mm}
         \caption{a) b)}
@@ -134,6 +115,32 @@ Our method
         % Переделать картинку от Туринге
         \includegraphics[width=60mm]{figures/UranCube1.pdf} 
         \includegraphics[width=60mm]{figures/UranCube2.pdf}  
+        \vspace{-3mm}
+        \caption{a) b)}
+    \end{center}
+    \labelf{fig01}
+    \vspace{-5mm}
+\end{figure}
+
+\begin{figure}[t]
+    \begin{center}
+        % Сделать подписи к отдельным картинкам
+        % Переделать картинку от Туринге
+        \includegraphics[width=60mm]{figures/diffmat0.pdf} 
+        \includegraphics[width=60mm]{figures/diffmat.pdf}  
+        \vspace{-3mm}
+        \caption{a) b)}
+    \end{center}
+    \labelf{fig01}
+    \vspace{-5mm}
+\end{figure}
+
+\begin{figure}[t]
+    \begin{center}
+        % Сделать подписи к отдельным картинкам
+        % Переделать картинку от Туринге
+        \includegraphics[width=60mm]{figures/diffmat1.pdf} 
+ 
         \vspace{-3mm}
         \caption{a) b)}
     \end{center}
@@ -159,7 +166,7 @@ where $x_i$ --- thickness of the $i$-layer, $\Sigma^{mean}_i$ --- mean cross-sec
 \begin{equation}
 \sum_E(\ln \frac{N(E)}{N_0(E)} + \sum_i \Sigma^{mean}_i(E)x_i))^2 \to min
 \end{equation}
-Далее приведен пример работы алгоритма. We consider the object which has 3 layers of aluminium, iron and lead.The figure ~\ref{rec:ex} shows a contribution of every reconstructed material in summary attenuation. The table ~\ref{tab:rec} contains the results of reconstruction.
+Далее приведен пример работы алгоритма. We consider the object which has 3 layers of aluminium, iron and lead.The figure~\ref{rec:ex}a shows a contribution of every reconstructed material in summary attenuation. The table~\ref{tab:rec} contains the results of reconstruction.As we can see from the table, its result is quite accurate. To clarify the capabilities of the algorithm, we conducted several numerical experiments.We also used aluminum, iron and lead, but now we have taken many sets of thicknesses, with a total thickness between 30 and 180 centimeters. The figure~\ref{rec:ex}b shows the variation of recovery errors for these sets. As we can see, the thickness of heavy elements is determined best of all - with an accuracy about 5\%, and worst of all for materials from the iron group, the error there reaches 30\%. However, this is too simple model. What good will it do? We used only the energy distribution, if we also add a space distribution, then we can try to reconstruct the three-dimensional structure of the cargo in the container (the 3D gamma tomography). Therefore, our simple model shows that we have the prospect of creating a truly powerful system for analyzing the contents of containers.
 \begin{figure}[t]
     \begin{center}
         % Сделать подписи к отдельным картинкам
