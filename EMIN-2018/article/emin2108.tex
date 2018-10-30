@@ -57,7 +57,6 @@ where $T$ -  transmittance, $S(E_0, E)$ - response function, $\mu(E,Z)$ - attenu
 We assume that bremsstrahlung is used as a source of gamma rays, with a spectrum, for example, as in figure~\ref{fig01}b and with the maximum energy depending on the energy of the electron beam. Our transmittance also depends on the mean material attenuation coefficient. Figure~\ref{fig01}a shows the dependence of the attenuation coefficient on energy for different materials. We can distinguish three areas: the initial one in which the photoelectric effect dominates and only materials with a large nuclear charge stand out; the average in which Compton scattering dominates and materials are not distinguishable, and the area where the main influence is produced by the production of electron-positron pairs, and the materials are quite well distinguishable. The last area can be used for the dual energy method.
 \begin{figure}[t]
 \begin{center}
-    % Сделать подписи к отдельным картинкам
 \includegraphics[width=60mm]{figures/Attenuation.pdf} 
 \includegraphics[width=60mm]{figures/Bremsstrahlung.pdf}  
 \vspace{-3mm}
@@ -85,10 +84,9 @@ Therefore, we offer an alternative method:
 \section*{Simulation}
 \begin{figure}[t]
     \begin{center}
-        % Сделать подписи к отдельным картинкам
         \includegraphics[width=120mm]{figures/yed_schema_1.pdf}
         \vspace{-3mm}
-        \caption{a) }
+        \caption{a) Схема моделирования }
     \end{center}
     \labelf{pic:schema1}
     \vspace{-5mm}
@@ -97,53 +95,55 @@ For evaluation, we conducted several simulations using the scheme (fig.~\ref{pic
 An electron beam with the energy of 10 MeV collides with a wolfram converter, producing a bremsstrahlung that irradiates a steel two-meter container, inside which the object under study is located and is detected by a detector. Расcтояние между вольфрамовым конвертером и контейнером два метра, между контернером и детектором 10 см. Приведем некоторые примеры моделирования.
 \begin{figure}[t]
     \begin{center}
-        % Сделать подписи к отдельным картинкам
-        % Переделать картинку от Туринге
         \includegraphics[width=60mm]{figures/Sword.pdf} 
         \includegraphics[width=60mm]{figures/UranCube1.pdf}  
         \vspace{-3mm}
-        \caption{a) b)}
+        \caption{a)Опасный стальной объект с неоднородной толщиной b) Урановый куб в свинцовой оболочке}
     \end{center}
     \labelf{pic:sword}
     \vspace{-5mm}
 \end{figure}
 \begin{figure}[t]
     \begin{center}
-        % Сделать подписи к отдельным картинкам
-        % Переделать картинку от Туринге
         \includegraphics[width=60mm]{figures/UranCube2.pdf} 
         \includegraphics[width=60mm]{figures/Hex.pdf}  
         \vspace{-3mm}
-        \caption{a) b)}
+        \caption{a) Урановый куб в свинцовой оболочке b) Сравнение целлюлозы и RDX}
     \end{center}
     \labelf{pic:hex}
     \vspace{-5mm}
 \end{figure}
 \begin{figure}[t]
-    \begin{center}
-        % Сделать подписи к отдельным картинкам
-        % Переделать картинку от Туринге
+    \begin{center} 
         \includegraphics[width=60mm]{figures/diffmat0.pdf} 
         \includegraphics[width=60mm]{figures/diffmat.pdf}  
         \vspace{-3mm}
-        \caption{a) b)}
+        \caption{a) Энергетические спектры различных материалов (общий вид) 
+        b) Энергетические спектры различных материалов (область с энергией более 4 МэВ)
     \end{center}
     \labelf{fig01}
     \vspace{-5mm}
 \end{figure}
 \begin{figure}[t]
     \begin{center}
-        % Сделать подписи к отдельным картинкам
-        % Переделать картинку от Туринге
         \includegraphics[width=60mm]{figures/diffmat1.pdf} 
         \includegraphics[width=60mm]{figures/Difference.pdf}  
         \vspace{-3mm}
-        \caption{a) b)}
+        \caption{a) Зависимость метрики от эффективного заряда материала
+ b) Сравнение энергетических спектров от уранового и алюминиевого шарика}
     \end{center}
     \labelf{pic:diff}
     \vspace{-5mm}
 \end{figure}
 На рисунке ~\ref{pic:sword})a пример опасного предмета из стали неравномерной толщины близкой к толщине стенок контейнера. На рисунках~\ref{pic:sword}b и ~\ref{pic:hex}a  показан результат  моделирования кубика урана с ребром 6 сантиметров (масса около 4 кг), помещённого в свинцовую сферу толщиной 1 см, как показало моделирования такой куб можно обнаружить при толщине оболочки вплоть до 5 сантиметров. Рисунок ~\ref{pic:hex}b демонстрирует различие между двумя органическими материалами: безопасным - целлюлозы, и опасным  - RDX. Различие значимо, а значит есть возможность создать алгоритмы поиска органических взрывчатых веществ. На рисуноке ~\ref{pic:diff}b  показывается результат сравнения двух энергетических спектров (в  качестве метрики выбран логарифм отношения интенсивностей) от алюминиевого и уранового шариков диаметром 1 см. Как мы видим даже на таких малых масштабах и небольших (по сравнение с реальным пучком) интенсивностях возможна регистрация различий в энергетических спектрах.
+
+Также для проверки возможности определять эффективный заряд материала по энергетическому спектру было проведено
+следующее моделирование. Было взято 6 мишений из различных материалов (), с одинаковым поперечным размером и
+ различним продольным. Продольный размер подбирался таким образом, что бы полное ослабление потока гамма-лучей было
+одинаковым для всех материалов, и их нельзя было различить только по анализу пространственого спектра.
+Энегретические спектры этих мишений показаны на рисунках . Можно заметить все спектры различны в области до 3 Мэв
+ (см. рис.) и в области после 4 Мэв (см. рис. ). Следует отметить что это отличие значимо даже для малых интесивностей
+электронного  пучка ($10^8$), а значит на реальном электронном пучке с ускорителя ($10^{15}$) будет выражено более ярко.
 
 
 \section*{Thickness reconstruction}
@@ -151,7 +151,7 @@ An electron beam with the energy of 10 MeV collides with a wolfram converter, pr
     % Сделать подписи к отдельным картинкам
     \includegraphics[width=\linewidth]{figures/yed_schema_2.pdf}
     \vspace{-3mm}
-    \caption{ Thickness reconstruction}
+    \caption{Thickness reconstruction}
     \labelf{schema2}
     \vspace{-5mm}
 \end{wrapfigure}
@@ -171,13 +171,14 @@ where $x_i$ --- thickness of the $i$-layer, $\Sigma^{mean}_i$ --- mean cross-sec
         \includegraphics[width=60mm]{figures/reconstruction.pdf} 
         \includegraphics[width=60mm]{figures/relError.pdf}  
         \vspace{-3mm}
-        \caption{a) b)Distribution of reconstruction errors for various numerical experiments}
+        \caption{a) Вклад отлельных слоев в общее ослабление потока b)Distribution of reconstruction errors for various numerical experiments}
     \end{center}
     \labelf{rec:ex}
     \vspace{-5mm}
 \end{figure}
 
 \begin{table}
+    \caption{Пример результатов работы алгоритма востановления}
 \begin{center}
         \begin{tabular}[c]{|c|c|c|}
         \hline 
@@ -211,6 +212,7 @@ The experiment was conducted by Dr. Guber and Dr. Ivashkin.
 The sum of signals from 2 photodiode\\
 Noise threshold: 100 KeV\\
 \begin{table}
+    \caption{Измерение энергетического разрешения детектора }
     \begin{center} 
         \begin{tabular}[c]{|c|c|c|}
             
