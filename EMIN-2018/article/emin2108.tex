@@ -12,6 +12,7 @@
 \usepackage{multirow}
 \originalTeX
 %\russianTeX
+\graphicspath{{figures_eng/}}
 \begin{document}
 % Journal sections (see http://pkp.jinr.ru/index.php/PEPAN_LETTERS/about/editorialPolicies#focusAndScope)
 \issuearea{Physics of Elementary Particles and Atomic Nuclei. Theory}
@@ -20,7 +21,7 @@
 \title{Chemical composition analysis for X-ray transport container scans.  \\ Анализ химического состава при сканировании транспортных контейнеров гамма-излучением}
 \maketitle
 \authors{A. Zelenaya$^{~a,}$\footnote{E-mail: zelyenaya.av@phystech.edu}, M. Zelenyi$^{~a,b,}$\footnote{E-mail: mihail.zelenyy@phystech.edu}, A.A.Turinge$^{~a}$,  V.G. Nedorezov$^{~a,}$\footnote{E-mail: vladimir@cpc.inr.ac.ru}}
-\from{$^{a}$\,Institute of Nuclear Research of RAS}
+\from{$^{a}$\,Institute for Nuclear Research of RAS}
 \vspace{-3mm}
 \from{$^{b}$\,Moscow Institute of Physics and Technology}
 
@@ -30,7 +31,7 @@ It is important for national security to control the movement of dangerous or st
 In this report the existing technique for scanning (dual energy method) is considered and the alternative method based on measuring the energy distribution of gamma rays is proposed. For estimation perspectives of the proposing method, the  corresponding simulation was conducted by using the GEANT4 toolkit. The example of the algorithm of reconstruction the chemical composition of the scanned object is also considered. In addition the experiment for estimation energy resolution of the detector based on a scintillation crystal BGO and SiPM was carried out.\\
 \vspace{0.2cm}
 
-Для обеспечения национальной безопасности важен контроль перемещения опасных или стратегически важных грузов, таких как взрывчатые вещества, радиоактивные материалы, редкие и драгоценные металлы. Проводить такой контроль можно сканирую содержимое   транспортных контейнеров гамма излучением. В данной работе рассмотрена существующая методика дуальных энергий и предложен альтернативный способ, основанный на измерении энергетического распределения гамма-квантов. Для оценки было проведено моделирование с помощью транспортного кода GEANT4.  Также выполнен эксперимент по измерению энергетического разрешения детектора на основе сцинтиллирующего кристалла BGO и кремневого фотоумножителя. 
+Для обеспечения национальной безопасности важен контроль перемещения опасных или стратегически важных грузов, таких как взрывчатые вещества, радиоактивные материалы, редкие и драгоценные металлы. Проводить такой контроль можно, сканируя содержимое транспортных контейнеров гамма-излучением. В данной работе рассмотрена существующая методика дуальных энергий и предложен альтернативный способ, основанный на измерении энергетического распределения гамма-квантов. Для оценки было проведено моделирование с помощью транспортного кода GEANT4.  Также выполнен эксперимент по измерению энергетического разрешения детектора на основе сцинтиллирующего кристалла BGO и кремневого фотоумножителя. 
 \end{abstract}
 \vspace*{6pt}
 
@@ -42,15 +43,20 @@ PACS: 02.70.$-$c; 23.20.Nx; 32.90.$+$a
 \section*{Introduction}
 \begin{figure}[t]
     \begin{center}
-        \includegraphics[width=60mm]{figures/Attenuation.pdf} 
-        \includegraphics[width=60mm]{figures/Bremsstrahlung.pdf}  
+        \begin{minipage}[h]{0.49\linewidth}
+        \center{ \includegraphics[width=60mm]{Attenuation.pdf}  \\ a)}
+        \end{minipage}
+    \hfill
+        \begin{minipage}[h]{0.49\linewidth}
+        \center{ \includegraphics[width=60mm]{Bremsstrahlung.pdf}  \\ b)}
+        \end{minipage} 
         \vspace{-3mm}
-        \caption{a)Attenuation curve b) Bremsstrahlung spectrum by $10 MeV$ electron}
+        \caption{a) Attenuation curve. b) Bremsstrahlung spectrum by $10 MeV$ electron.}
     \end{center}
     \labelf{pic:att}
     \vspace{-5mm}
 \end{figure}
-The use of high-energy gamma radiation in applied tomography is already quite widespread. In this paper, we consider the possibilities of improving the existing technique both by modernizing the equipment and by developing mathematical algorithms that more fully utilize the information contained in the measured values.
+The use of high-energy gamma radiation in applied tomography is already quite widespread. In this paper, we consider the possibilities of improving the existing technique both by modernizing the equipment and by developing mathematical algorithms that more fully utilize the information contained in the measured values. Firstly, we consider the existing dual energy method and determine possible directions for creating a more accurate method. Further, the paper describes several simulations and numerical experiments with a discussion of the results. The paper also presents the results of measurements of the characteristics of a BGO scintillation crystal, which can be as a basis for modernized equipment.
 \section*{Dual energy method}
 Consider how the flux of gamma rays decreases. Transmittance is described by the following equation:
 \begin{equation}
@@ -79,70 +85,89 @@ Therefore, we offer an alternative method:
 \section*{Simulation}
 \begin{figure}[t]
     \begin{center}
-        \includegraphics[width=120mm]{figures/yed_schema_1.pdf}
+        \includegraphics[width=120mm]{figures_eng/yed_schema_1.pdf}
         \vspace{-3mm}
-        \caption{a) Schema of simulation}
+        \caption{Schema of simulation.}
     \end{center}
     \labelf{pic:schema1}
     \vspace{-5mm}
 \end{figure}
 For evaluation, we conducted several GEANT4~\cite{ALLISON2016186} simulations using the scheme (fig.~\ref{pic:schema1}):
-An electron beam with the energy of 10 MeV collides with a wolfram converter, producing a bremsstrahlung that irradiates a steel two-meter container, inside which the object under study is located and is detected by a detector. The distance between the tungsten converter and the container is two meters, between the container and the detector -- 10 cm. Let us give some examples of simulations.
+An electron beam with the energy of 10 MeV collides with a wolfram converter, producing a bremsstrahlung that irradiates a steel two-meter container, inside which the object under study is located and is detected by a detector. The distance between the tungsten converter and the container is two meters, between the container and the detector -- 10 cm.
 \begin{figure}[t]
     \begin{center}
-        \includegraphics[width=60mm]{figures/Sword.pdf} 
-        \includegraphics[width=60mm]{figures/UranCube1.pdf}  
+        \begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{Sword.pdf} \\ a)}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\linewidth}
+    \center{ \includegraphics[width=60mm]{UranCube1.pdf} \\ b)}
+\end{minipage}   
         \vspace{-3mm}
-        \caption{a)Dangerous steel object with non-uniform thickness b) Uranium cube in a lead shell}
+        \caption{a) Dangerous steel object with non-uniform thickness. b) Uranium cube in a lead shell.}
     \end{center}
     \labelf{pic:sword}
     \vspace{-5mm}
 \end{figure}
 \begin{figure}[t]
     \begin{center}
-        \includegraphics[width=60mm]{figures/UranCube2.pdf} 
-        \includegraphics[width=60mm]{figures/Hex.pdf}  
+        \begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{UranCube2.pdf}  \\ a)}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{Hex.pdf} \\ b)}
+\end{minipage} 
         \vspace{-3mm}
-        \caption{a) Uranium cube in a lead shell b) Comparison of сellulose and RDX}
+        \caption{a) Uranium cube in a lead shell. b) Comparison of сellulose and RDX.}
     \end{center}
     \labelf{pic:hex}
     \vspace{-5mm}
 \end{figure}
 \begin{figure}[t]
     \begin{center} 
-        \includegraphics[width=60mm]{figures/diffmat0.pdf} 
-        \includegraphics[width=60mm]{figures/diffmat.pdf}  
+        \begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{diffmat0.pdf} \\ a)}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{diffmat.pdf}  \\ b)}
+\end{minipage}  
         \vspace{-3mm}
-        \caption{a) Energy spectra of various materials (general view) 
-        b) Energy spectra of various materials (area with energy more than 4 MeV)}
+        \caption{a) Energy spectra of various materials (general view). 
+        b) Energy spectra of various materials (area with energy more than 4 MeV).}
     \end{center}
     \labelf{pic:diff0}
     \vspace{-5mm}
 \end{figure}
 \begin{figure}[t]
     \begin{center}
-        \includegraphics[width=60mm]{figures/diffmat1.pdf} 
-        \includegraphics[width=60mm]{figures/Difference.pdf}  
+        \begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{diffmat1.pdf}  \\ a)}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{Difference.pdf}   \\ b)}
+\end{minipage} 
         \vspace{-3mm}
-        \caption{a) The dependence of the metric on the effective Z of the material
- b) Comparison of the energy spectra from uranium and aluminum spheres}
+        \caption{a) The dependence of the metric on the effective Z of the material.
+ b) Comparison of the energy spectra from uranium and aluminum spheres.}
     \end{center}
     \labelf{pic:diff}
     \vspace{-5mm}
 \end{figure}
-Figure~\ref{pic:sword}a shows an example of a dangerous steel object of non-uniform thickness close to the thickness of the container walls. Figures~\ref{pic:sword}b and~\ref{pic:hex}a show the result of simulation an uranium cube with an edge of 6 centimeters (weight is about 4 kg) placed in a lead sphere with the thickness is 1 cm. As shown by simulation such a cube can be detected with a shell thickness of up to 5 centimeters. Figure~\ref{pic:hex}b demonstrates the difference between two organic materials: safe -- cellulose, and dangerous -- RDX. The difference is significant, which means that it is possible to create algorithms for the searching for organic explosives. The picture~\ref{pic:diff}b shows the result of comparing two energy spectra (the logarithm of the intensity ratio is selected as the metric) from aluminum and uranium sphere of 1 cm in diameter. As we can see, even on such small scales and small (as compared with real beam) intensities it is possible to register differences in the energy spectra.
+
+Let's give some examples of simulations:
+\begin{itemize}
+    \item Figure~\ref{pic:sword}a shows an example of a dangerous steel object of non-uniform thickness close to the thickness of the container walls. \item Figures~\ref{pic:sword}b and~\ref{pic:hex}a show the result of simulation an uranium cube with an edge of 6 centimeters (weight is about 4 kg) placed in a lead sphere with the thickness is 1 cm. As shown by simulation such a cube can be detected with a shell thickness of up to 5 centimetres.
+    \item Figure~\ref{pic:hex}b demonstrates the difference between two organic materials: safe -- cellulose, and dangerous -- RDX. The difference is significant, which means that it is possible to create algorithms for the searching for organic explosives.
+    \item The picture~\ref{pic:diff}b shows the result of comparing two energy spectra (the logarithm of the intensity ratio is selected as the metric) from aluminum and uranium sphere of 1 cm in diameter. As we can see, even on such small scales and small (as compared with real beam) intensities it is possible to register differences in the energy spectra.
+\end{itemize}
 
 Also to test the ability for determining the effective charge of the material on the energy spectrum, the following simulation was performed. Six targets were taken from various materials (iron, lead, aluminum, cellulose, tin, uranium), with the same lateral dimension and different longitudinal size. The longitudinal size was chosen in such a way that the total attenuation of the gamma-ray flux would be the same for all materials, and they could not be distinguished only by analysing the spatial spectrum.
-The energy spectra of these targets are shown in the figures. As you can see all the spectra are different in the region up to 3 MeV (see the fig.~\ref{pic:diff0}a) and in the region after 4 MeV (see the fig.~\ref{pic:diff0}b). It should be noted that this difference is significant even for small electron beam intensities ($10^8$), which means that in a real electron beam from an accelerator ($10^{15}$) it will be more pronounced. Thus, based on simulations, it is possible to start with a simple criterion: ratio. Such a criterion allows us to distinguish materials by the $Z_{eff}$, and it should be noted that the errors in the figure~\ref{pic:diff} are only statistical and at intensities corresponding to the real electron beam will be negligible. However, this criterion also is not the optimal solution, since when it is used, most of the information about the spectrum is lost. In the next section, we used a simple example to show the potential for creating a 3D gamma-tomography using full spectrum information.
+The energy spectra of these targets are shown in the figures. As you can see all the spectra are different in the region up to 3 MeV (see the fig.~\ref{pic:diff0}a) and in the region after 4 MeV (see the fig.~\ref{pic:diff0}b). It should be noted that this difference is significant even for small electron beam intensities ($10^8$), which means that in a real electron beam from an accelerator ($10^{15}$) it will be more pronounced. Thus, based on simulations, it is possible to start with a simple criterion: ratio of gamma-ray with energy more 3~MeV. Such a criterion allows us to distinguish materials by the $Z_{eff}$, and it should be noted that the errors in the figure~\ref{pic:diff} are only statistical and at intensities corresponding to the real electron beam will be negligible. However, this criterion also is not the optimal solution, since when it is used, most of the information about the spectrum is lost. In the next section, we used a simple example to show the potential for creating a 3D gamma-tomography using full spectrum information.
 \section*{Thickness reconstruction}
-\begin{wrapfigure}[9]{r}{0.6\linewidth} 
-    % Сделать подписи к отдельным картинкам
-    \includegraphics[width=\linewidth]{figures/yed_schema_2.pdf}
-    \vspace{-3mm}
-    \caption{Thickness reconstruction}
-    \labelf{schema2}
-    \vspace{-5mm}
-\end{wrapfigure}
+
 We consider the one-dimensional case when gamma-rays pass a stack of several materials with a fixed total thickness and we need to restore the thickness of individual materials (see diagram~\ref{schema2}). We use a simple physical model in which the attenuation is given by the following equation:
 \begin{equation}
 \label{eq:gamma}
@@ -152,13 +177,25 @@ where $x_i$ --- thickness of the $i$-layer, $\Sigma^{mean}_i$ --- mean cross-sec
 \begin{equation}
 \sum_E(\ln \frac{N(E)}{N_0(E)} + \sum_i \Sigma^{mean}_i(E)x_i))^2 \to min
 \end{equation}
-The following is an example of the operation of the algorithm. We consider the object which has 3 layers of aluminium, iron and lead.The figure~\ref{rec:ex}a shows a contribution of every reconstructed material in summary attenuation. The table~\ref{tab:rec} contains the results of reconstruction.As we can see from the table, its result is quite accurate. To clarify the capabilities of the algorithm, we conducted several numerical experiments.We also used aluminum, iron and lead, but now we have taken many sets of thicknesses, with a total thickness between 30 and 180 centimeters. The figure~\ref{rec:ex}b shows the variation of recovery errors for these sets. As we can see, the thickness of heavy elements is determined best of all - with an accuracy about 5\%, and worst of all for materials from the iron group, the error there reaches 30\%. However, this is too simple model. What good will it do? We used only the energy distribution, if we also add a space distribution, then we can try to reconstruct the three-dimensional structure of the cargo in the container (the 3D gamma tomography). Therefore, our simple model shows that we have the prospect of creating a truly powerful system for analyzing the contents of containers.
+\begin{wrapfigure}[12]{r}{0.6\linewidth} 
+    \includegraphics[width=\linewidth]{yed_schema_2.pdf}
+    \vspace{-3mm}
+    \caption{Thickness reconstruction.}
+    \labelf{schema2}
+    \vspace{-5mm}
+\end{wrapfigure}
+The following is an example of the operation of the algorithm. We consider the object which has 3 layers of aluminium, iron and lead.The figure~\ref{rec:ex}a shows a contribution of every reconstructed material in summary attenuation. The table~\ref{tab:rec} contains the results of reconstruction.As we can see from the table, its result is quite accurate. To clarify the capabilities of the algorithm, we conducted several numerical experiments.We also used aluminum, iron and lead, but now we have taken many sets of thicknesses, with a total thickness between 30 and 180 centimeters. The figure~\ref{rec:ex}b shows the variation of recovery errors for these sets. As we can see, the thickness of heavy elements is determined best of all --- with an accuracy about 5\%, and worst of all for materials from the iron group, the error there reaches 30\%. However, this is too simple model. What does this give us? We used only the energy distribution, if we also add a space distribution, then we can try to reconstruct the three-dimensional structure of the cargo in the container (the 3D gamma tomography). Therefore, our simple model shows that we have the prospect of creating a truly powerful system for analyzing the contents of containers.
 \begin{figure}[t]
     \begin{center}
-        \includegraphics[width=60mm]{figures/reconstruction.pdf} 
-        \includegraphics[width=60mm]{figures/relError.pdf}  
+        \begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{reconstruction.pdf} \\ a)}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=60mm]{relError.pdf}   \\ b)}
+\end{minipage}
         \vspace{-3mm}
-        \caption{a) The contribution of individual layers in the total attenuation of the flux b)Distribution of reconstruction errors for various numerical experiments}
+        \caption{a) The contribution of individual layers in the total attenuation of the flux. b) Distribution of reconstruction errors for various numerical experiments.}
     \end{center}
     \labelf{rec:ex}
     \vspace{-5mm}
@@ -184,14 +221,7 @@ The following is an example of the operation of the algorithm. We consider the o
 
 \newpage
 \section*{Experiment}
-\begin{wrapfigure}[20]{r}{0.5\linewidth} 
-    \includegraphics[width=\linewidth]{figures/yed.pdf}  
-    \vspace{-3mm}
-    \caption{Schema of experiment}
-    \labelf{pic:experiment}
-    \vspace{-5mm}
-\end{wrapfigure}
-In addition to simulation, Dr. Guber and Dr. Ivashkin also measured the energy resolution of the detector to detect gamma radiation. The experiment is shown in figure~\ref{pic:experiment}. A BGO scintillator with a size of 10x30x100mm and an ArrayC-60035-4P photodetector were used in this work. Spectra were measured from sources of $\beta$ radiation ($^{22}Na$ and $^{137}Cs$). The radiation energy is 0.511 MeV and 1.275 MeV for $^{22}Na$ and 0.662 MeV for $^{137}Cs$. A matrix of four photodiodes ArrayC-60035-4P with a photodiode size 6x6mm, equiped with an individual preamplifier with a gain of 150, was used as a photodetector. The total signal from two photodiodes of the matrix was measured during the experiment. The signal from the matrix was transmitted to an amplifier (ORTEC 579) and then --- to the input channel of the ADC (CAEN DT5742) and to the discriminator (CAEN mod.224), the logical signal of which served as a trigger in the system. In the absence of a source, the ADC scale was calibrated in absolute units --- the number of photoelectrons. The result of measuring the energy resolution is given in the table~\ref{tab:ex}. In experiment used sum of signals from 2 photodiode and set noise threshold 100 KeV.\\
+In addition to simulation, Dr. Guber and Dr. Ivashkin also measured the energy resolution of the detector to detect gamma radiation. A BGO scintillator with a size of 10x30x100 mm (length of crystal choose for full absorption of 10 MeV gamma-ray) and an ArrayC-60035-4P photodetector were used in this work. Spectra were measured from sources of radiation ($^{22}Na$ and $^{137}Cs$). The radiation energy is 0.511 MeV and 1.275 MeV for $^{22}Na$ and 0.662 MeV for $^{137}Cs$. A matrix of four photodiodes ArrayC-60035-4P with a photodiode size 6x6mm, equiped with an individual preamplifier with a gain of 150, was used as a photodetector. The total signal from two photodiodes of the matrix was measured during the experiment. The signal from the matrix was transmitted to an amplifier (ORTEC 579) and then --- to the input channel of the ADC (CAEN DT5742) and to the discriminator (CAEN mod.224), the logical signal of which served as a trigger in the system. In the absence of a source, the ADC scale was calibrated in absolute units --- the number of photoelectrons. The result of measuring the energy resolution is given in the table~\ref{tab:ex}. In experiment used sum of signals from 2 photodiode and set noise threshold 100 KeV.\\
 \begin{table}
     \caption{Measurement of the energy resolution of the detector}
     \label{tab:ex}
@@ -212,12 +242,11 @@ In addition to simulation, Dr. Guber and Dr. Ivashkin also measured the energy r
 
 
 \section*{Conclusion}
-% Выводы сделать более твердыми и акцентирванными
 Results:   
     \begin{enumerate}
-        \item The measurement of the gamma ray spectrum allows to identify cargo belonging to the group of materials with certain $Z_{eff}$.
-        \item Also it allows to define the thickness of layers from different elements with the accuracy about 25\%.
-        \item The energy resolution of the detector based on a BGO scintillator was studied.  For the photodetector with full array of pixels the energy resolution is expected about 10\%.
+        \item The energy spectra of materials with different effective charge numbers differ in the energy regions up to 3 and after 4~MeV. The dependence of the charge number on the fraction of gamma rays with an energy above 3~MeV is estimated. This method allows to identify individual groups of elements in a container by charge number (light, medium, heavy) in one exposure with one fixed electron energy, optimally near 8~MeV. At the same time, it is required a resolution no less than 15\% and the registration efficiency is about 90\%.
+        \item Energy resolution nearly 10\% allows to determine the thickness of an individual layer in a multilayer structure with an accuracy of 25\%.
+        \item The energy resolution of the detector based on BGO has been measured, and in general, the results indicate high performance characteristics and material quality. It is possible to achieve the characteristics which declared by the manufacturer ($FWHM \sim 9\%$ for $^{137}Cs$).
     \end{enumerate}
 Plans and perspectives
     With financial support can be developed:
@@ -226,7 +255,7 @@ Plans and perspectives
         \item The algorithm for the 3D gamma-tomography.
     \end{enumerate}
 
-This work is supported by the Ministry of Education and Science of the Russian Federation under the contract No. 3.3008.2017/PP.
+This work is supported by the Ministry of Education and Science of the Russian Federation under the contract No. 3.3008.2017/PP and the Russian Science Foundation under grant No. 16-12-10039.
 \bibliographystyle{pepan}
 \bibliography{references.bib}
 
