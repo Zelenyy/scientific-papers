@@ -5,7 +5,7 @@
 \usepackage{lmodern}
 \usepackage{amsfonts}
 \usepackage{amsmath}
-
+\usepackage{mwe,tikz}
 \graphicspath{{figures/}}
 
 % тема оформления
@@ -61,20 +61,76 @@
 %\end{frame}
 %
 \begin{frame}
-\frametitle{Thunderstorm cloud and lighting: paths for research}
+\frametitle{Thunderstorm cloud and lighting: paths for exploring}
+    \begin{figure} \centering
+    \begin{tikzpicture}[      
+    every node/.style={inner sep=0pt},
+    x=1mm, y=1mm
+    ] 
+    \node (fig0) at (0,50){
+        \centering\includegraphics[width=0.15\paperwidth]{telescope.pdf}
+    };
+    \node (fig0t) at (0,38){
+    Optical observations
+    };   
+    \node (fig1) at (95,90){ \centering\includegraphics[width=0.15\paperwidth]{satellite_r.pdf}
+    };
+    \node (fig0t) at (95,78){
+    UV \& IR observations
+    };  
+    \node (fig2) at (0,90){
+    \centering\includegraphics[width=0.15\paperwidth]{satellite_l.pdf}
+    };  
+    \node (fig0t) at (0,78){
+    Gamma-rays
+    }; 
+    \node (fig3) at (50,70){
+    \centering\includegraphics[width=0.2\paperwidth]{storm.pdf}
+    };   
+     \node (fig4) at (75,40){
+        \centering\includegraphics[width=0.1\paperwidth]{antenna.pdf}
+    }; 
+    \node (fig5) at (95,45){
+        \centering{\includegraphics[width=0.15\paperwidth]{dish.pdf}}
+    };     
+    \node (fig4t) at (95,30){
+    VHS Interefemetry
+    };
+    \node (fig6) at (35,40){
+    \centering{\includegraphics[width=0.1\paperwidth]{radio.pdf}}
+    };
+    \node (fig6) at (50,40){
+    \centering{\includegraphics[width=0.1\paperwidth]{atom.pdf}}
+    };
+    \node (fig6t) at (40,30){
+    Energy radiation \& Relativistic electrons \& Neutrons
+    };
+    \node (fig7) at (70,60){
+    \centering{\includegraphics[width=0.1\paperwidth]{plane.pdf}}
+    };
+    \node (fig8) at (30,70){
+    \centering{\includegraphics[width=0.1\paperwidth]{ballon.pdf}}
+    };
 
+    
+
+    \end{tikzpicture}
+    
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{History}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
-			TGF ---
+			TGF --- short ($\sim 10$ mcs) flash of gamma-ray from thunderstorm cloud
 		\end{column}
 		\begin{column}{0.5\textwidth}
-			TGE ---
+			TGE --- long-lasting (from 5 minutes to 3-4 hours)  enhancements of gamma-ray correlate with electric field changes  
 		\end{column}
 	\end{columns}
+\centering\includegraphics[width=0.8\textwidth]{timeline.pdf}
+
 \end{frame}
 
 \begin{frame}
@@ -127,14 +183,63 @@
 }%
 \begin{frame}
     \frametitle{Reactor Like TGE model}
- \centering\includegraphics[width=0.8\paperwidth]{draw.pdf}
+    
+    \begin{figure} \centering
+        \begin{tikzpicture}[      
+        every node/.style={anchor=south west,inner sep=0pt},
+        x=1mm, y=1mm
+        ]   
+        \node (fig1) at (0,0)
+        { \centering\includegraphics[width=0.8\paperwidth]{draw.pdf}};
+        \node[text width=6cm] (fig2) at (0,45)
+        {
+    \begin{itemize}
+    \item Real cloud have multy-layer structure
+    \item Electric field is non-uniform
+    \item Consider cloud as system of cells
+    \end{itemize}
+    \centering\includegraphics[width=0.25\paperwidth]{cell.pdf}
+     };  
+        \node[text width=5cm] (fig3) at (54,47)
+        {
+            \begin{itemize}
+            \item Seed gamma "burn" accelerator cells
+            \item Secondary gamma propage in cloud
+            \item Run chain reaction
+            \item Evolution of reaction depend on local gain factor
+            \end{itemize}
+
+}; 
+        \end{tikzpicture}
+
+    \end{figure}
+
 
 \end{frame}
+
 \usebackgroundtemplate{}
-%\begin{frame}
-%\frametitle{Reactor Like TGE model}
-%
-%\end{frame}
+\begin{frame}
+\frametitle{Reactor Like TGE model}
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        As simplification case consider mean global gain:
+        \begin{itemize}
+            \item  If global gain is $\large 1$ --- exponential rise up breakdown or local micro-breakdown
+            \item If global gain is $\le 1$ --- exponential decay to background radiation
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1\columnwidth]{aragats.png}
+            \\
+            \centering{Observation TGE on Aragats mount}
+        \end{figure}
+        
+    \end{column}
+\end{columns}
+
+\end{frame}
 
 
 \begin{frame}
@@ -148,6 +253,7 @@
     	\item Cloud size is equals 1 kilometer and tracking of particle leaving volume stopped. 
     \end{itemize}
     This model is implemented as program on Kotlin programming language.
+    \includegraphics[width=0.3\paperwidth]{kotlin.pdf}
     
     
 \end{frame}
@@ -160,14 +266,14 @@
 		\centering
 		\includegraphics[width=1\columnwidth]{proofTGF.pdf}
 		\end{figure}
-		This figure shows the case of an \textbf{explosive growth} in the number of secondary photons that are well suited to the phenomenon of \textbf{TGF}.
+		{\LARGE This figure shows the case of an \textbf{explosive growth} in the number of secondary photons that are well suited to the phenomenon of \textbf{TGF}}
 	\end{column}
 	\begin{column}{0.5\textwidth}
 		\begin{figure}[htb]
 			\centering
 			\includegraphics[width=1\columnwidth]{Extinction.pdf}
 		\end{figure}
-		This figure demonstrates the case when there was a \textbf{dissipation of an avalanche} that had just begun to develop.
+	{\LARGE 	This figure demonstrates the case when there was a \textbf{dissipation of an avalanche} that had just begun to develop.}
 
 	\end{column}
 \end{columns}
@@ -180,16 +286,16 @@
     
     \begin{columns}
     	
-    	\begin{column}{0.5\textwidth}
+    	\begin{column}{0.6\textwidth}
     		
     		\begin{figure}[htb]
     			\centering
     			\includegraphics[width=1\columnwidth]{proofTGE.pdf}
     		\end{figure}
-    		This figure demonstrates the case of a \textbf{slower and less intensive growth}. Such processes with some minor adjustments and assumptions about field dynamics could describe \textbf{TGE} phenomenon.	
+	
     	\end{column}
     \end{columns}
-
+    \centering{\huge This figure demonstrates the case of a \textbf{slower and less intensive growth}. Such processes with some minor adjustments and assumptions about field dynamics could describe \textbf{TGE} phenomenon.}
 \end{frame}
 
 
