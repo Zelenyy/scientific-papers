@@ -123,10 +123,10 @@
 \frametitle{History}
 	\begin{columns}
 		\begin{column}{0.5\textwidth}
-			TGF --- short ($\sim 10$ mcs) flash of gamma-ray from thunderstorm cloud
+			{\large TGF --- short ($\sim 10$ mcs) flash of gamma-ray from thunderstorm cloud}
 		\end{column}
 		\begin{column}{0.5\textwidth}
-			TGE --- long-lasting (from 5 minutes to 3-4 hours)  enhancements of gamma-ray correlate with electric field changes  
+		{\large 	TGE --- long-lasting (from 5 minutes to 3-4 hours)  enhancements of gamma-ray correlate with electric field changes  }
 		\end{column}
 	\end{columns}
 \centering\includegraphics[width=0.8\textwidth]{timeline.pdf}
@@ -141,14 +141,14 @@
         \centering
         \includegraphics[width=1\columnwidth]{01_Gurevich.pdf}
     \end{figure}
-    \textbf{Gurevich model --- Runway breakdown}
+{\large     \textbf{Gurevich model --- Runway breakdown}
 \begin{itemize}
     \item Breakdown with help secondary ionization of relativistic electron
     \item If field over MIP loss - run breakdown
-\end{itemize}
+\end{itemize}}
 \end{column}
 \begin{column}{0.5\textwidth}
-     \textbf{Dwyer model --- Gamma and positron feedback}
+{\large      \textbf{Dwyer model --- Gamma and positron feedback}
     \begin{itemize}
         \item Electron emit bremsstrahlung (including directed to back)
         \item Compton scattering direct gamma to back 
@@ -156,7 +156,7 @@
         \item Gamma ray conversion in electron-positron pair
         \item Positron accelerate by field and ionizes cloud creating new primary electron
         
-    \end{itemize}
+    \end{itemize}}
 \end{column}
 \end{columns}
 
@@ -166,12 +166,12 @@
 
 \begin{frame}
 \frametitle{Disadvantages of existing model}
-\begin{itemize}
+{\large \begin{itemize}
     \item Gurevich model of runway breakdown don't give ionization for lighting initiation
     \item Dwyer model of feedback don't work in real condition [1]
     \item A long-lasting phenomena as TGE  can't exist in Dwyer model
     \item This models use uniform electric field where as field in cloud have more difficult structure 
-\end{itemize}
+\end{itemize}}
 \small{[1] Calculation of gain coefficient in Dwyer relativistic discharge feedback model of thunderstorm runway breakdown
     EPJ Web of Conferences 201, 07003 (2019), \url{https://doi.org/10.1051/epjconf/201920107003}}
 \end{frame}
@@ -189,25 +189,23 @@
         every node/.style={anchor=south west,inner sep=0pt},
         x=1mm, y=1mm
         ]   
-        \node (fig1) at (0,0)
-        { \centering\includegraphics[width=0.8\paperwidth]{draw.pdf}};
-        \node[text width=6cm] (fig2) at (0,45)
-        {
-    \begin{itemize}
-    \item Real cloud have multy-layer structure
-    \item Electric field is non-uniform
-    \item Consider cloud as system of cells
-    \end{itemize}
-    \centering\includegraphics[width=0.25\paperwidth]{cell.pdf}
-     };  
-        \node[text width=5cm] (fig3) at (54,47)
-        {
-            \begin{itemize}
+        \node (fig1) at (10,4){ \centering\includegraphics[width=0.8\paperwidth]{draw.pdf}
+        };
+        \node[text width=6cm] (fig2) at (0,45){
+{\large     		\begin{itemize}
+    		\item Real cloud have multy-layer structure
+   			\item Electric field is non-uniform
+    		\item Consider cloud as system of cells
+    		\end{itemize}}
+    	\centering\includegraphics[width=0.25\paperwidth]{cell.pdf}
+     	};  
+        \node[text width=6cm] (fig3) at (65,60){
+{\large             \begin{itemize}
             \item Seed gamma "burn" accelerator cells
             \item Secondary gamma propage in cloud
             \item Run chain reaction
             \item Evolution of reaction depend on local gain factor
-            \end{itemize}
+            \end{itemize}}
 
 }; 
         \end{tikzpicture}
@@ -222,11 +220,11 @@
 \frametitle{Reactor Like TGE model}
 \begin{columns}
     \begin{column}{0.5\textwidth}
-        As simplification case consider mean global gain:
+{\large         As simplification case consider mean global gain:
         \begin{itemize}
             \item  If global gain is $\large 1$ --- exponential rise up breakdown or local micro-breakdown
             \item If global gain is $\le 1$ --- exponential decay to background radiation
-        \end{itemize}
+        \end{itemize}}
     \end{column}
     \begin{column}{0.5\textwidth}
         \begin{figure}[htb]
@@ -244,16 +242,16 @@
 
 \begin{frame}
     \frametitle{Proof of concept}
-   	For fast checking the potential of our idea, we considered a next simplified model:  
-    \begin{itemize}
+{\large    	For fast checking the potential of our idea, we considered a next simplified model:  }
+{\large     \begin{itemize}
     	\item There are only one tuning parameter  --- the local coefficient of gamma multiplication, describing usefulness of atmosphere for generating secondary particles;
     	\item Production of Gamma in cell occurs by Poisson distribution, momentum direction of generated gamma is defined by the electric field direction;
     	\item Electric field is chaotic: in point of cell ignition, direction of field is generated by uniform distribution, but magnitudes is constant for whole cloud;
     	\item Energy of particle not taken into account, propagation of gamma simulated with exponential distribution with fixed mean free path;
     	\item Cloud size is equals 1 kilometer and tracking of particle leaving volume stopped. 
-    \end{itemize}
-    This model is implemented as program on Kotlin programming language.
-    \includegraphics[width=0.3\paperwidth]{kotlin.pdf}
+    \end{itemize}}
+{\large     This model is implemented as program on Kotlin programming language.}
+    \flushright{\flushbottom\includegraphics[width=0.3\paperwidth]{kotlin.pdf}}
     
     
 \end{frame}
@@ -301,25 +299,23 @@
 
 \begin{frame}
 \frametitle{Conclusion}
-				\begin{itemize}
+{\large 				\begin{itemize}
 	\item Reactor-like model is very good to describe TGF and other fast processes;
 	\item Slow processes like TGE could be described with additional assumptions about field dynamics;
 	\item The model could describe both TGE and TGF with the same mechanism depending on the state of the cloud.
 \end{itemize}
 Also reactor like model give next experimentally verifiable consequences:
 \begin{itemize}
-	\item Contrary to Dwyer and unmodified Gurevitch models, reactor model predicts quasi-isotropic (according to field distribution) emmittance of gamma-rays from a thundercloud.
-	
-	Measurement of the angular distribution of gamma-rays is required to prove or disprove the concept
+	\item Contrary to Dwyer and unmodified Gurevitch models, reactor model predicts quasi-isotropic (according to field distribution) emmittance of gamma-rays from a thundercloud. Measurement of the angular distribution of gamma-rays is required to prove or disprove the concept
 	
 	\item At first approximation, the energy spectrum of photons produced in RL model does not depend on radiation intensity (the spectrum depends on cell field and intensity on cell number).
 \end{itemize}
-Moreover reactor like TGE model can be used to investigate intercloud interaction.
+Moreover reactor like TGE model can be used to investigate intercloud interaction.}
 \end{frame}
 
 \begin{frame}
 \frametitle{Thank you for your attention}
-
+\centering\includegraphics[width=0.8\paperwidth]{end.jpg}
 \end{frame}
 
 
