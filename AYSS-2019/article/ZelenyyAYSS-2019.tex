@@ -28,8 +28,7 @@ cp,  % Conference Proceedings
 
 % My package
 \usepackage{overpic}
-
-\usepackage{todonotes}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -38,8 +37,7 @@ cp,  % Conference Proceedings
 \author{Mikhail Zelenyi} % Write as First name Surname
 \email[Corresponding author: ]{mihail.zelenyy@phystech.edu}
 \affiliation{
-Moscow Institute of Physics and Technology (State University) 
-}
+Moscow Institute of Physics and Technology}
 \affiliation{%
 Institute for Nuclear Research of RAS
 }%
@@ -51,8 +49,7 @@ Space Research Institute of RAS
 \author{Egor Stadnichuk}
 \email{egrstadnichuk@yandex.ru}
 \affiliation{
-Moscow Institute of Physics and Technology (State University) 
-}
+Moscow Institute of Physics and Technology}
 \affiliation{%
 Institute for Nuclear Research of RAS
 }%
@@ -68,17 +65,17 @@ Terrestrial gamma flash (TGF) and thunderstorm ground enhancements(TGE) phenomen
 \maketitle
 
 \section{Introduction}
-Many previous works point to the fact that electric field inside the thundercloud is high enough to accelerate electrons and produce secondary electromagnetic showers ~\cite{gurevich1992runaway, gurevich1999lightning,dwyer2003fundamental,dwyer2011low}.
+Many previous works point to the fact that electric field inside the thundercloud is high enough to accelerate electrons and produce secondary electromagnetic showers ~\cite{gurevich1992runaway, gurevich1999lightning,dwyer2003fundamental,dwyer2011low,gurevich2001kinetic, dwyer2015positron, dwyer2013properties}.
 The acceleration of electron is possible under two conditions:
 \begin{itemize}
     \item The strength of the field is higher than so-called critical field. The value of the critical field equals energy loss of minimally ionizing electron per length unit.
     \item The initial electron energy is high enough to be close to minimally ionizing energy.
 \end{itemize}
-The major problem of all of these models is that that while field strength is higher than critical field, the multiplication coefficient for showers is rather small and can’t describe some observed effects~\cite{npm_dwyer, Stadnichuk}. To solve these problems in this article we would like to present a concept of model describing a set of phenomena occurring in thundercloud, which is based on a combined global simulation of electron and photon transport inside the whole volume of the thundercloud.
+The major problem of all of these models is that while field strength is higher than critical field, the multiplication coefficient for showers is rather small and can’t describe some observed effects~\cite{npm_dwyer, Stadnichuk}. To solve these problems in this article we would like to present a concept of model describing a set of phenomena occurring in thundercloud, which is based on a combined global simulation of electron and photon transport inside the whole volume of the thundercloud.
 \section{Reactor like TGE model}
 \begin{figure}
     \centering
-    \begin{overpic}[scale=.5,percent]{figures/electric_streams.pdf}
+    \begin{overpic}[scale=.5]{figures/electric_streams.pdf}
     \put(15,53){\includegraphics[scale=.015]{figures/cell.pdf}}
     \put(20,69){\text{Acceleration cell}}
     \put(10,10){\includegraphics[scale=.15]{figures/draw.pdf}}
@@ -100,7 +97,7 @@ For fast checking the potential of our idea, we considered a next simplified mod
 	\item Energy of particle is not taken into account, propagation of gamma is simulated with exponential distribution with fixed mean free path;
 	\item Cloud size (meaning the volume with the field) could be varied, but as a reference we take one kilometer cube, we do not track particles outside the field volume. 
 \end{itemize}
-This model is implemented as program\footnote{\url{https://bitbucket.org/mipt-npm/skysim/src/default/}}  on Kotlin\footnote{\url{https://kotlinlang.org/}} programming language. %\todo{reference to code}
+This model is implemented as program\footnote{\url{https://bitbucket.org/mipt-npm/skysim/src/default/}}  on Kotlin\footnote{\url{https://kotlinlang.org/}} programming language. 
 
 \section{Results \& Discussion}
 
@@ -156,9 +153,9 @@ Another important result that relates the intensity of high-energy particle prod
 Our simple implementation of reactor like model shows potential possibility for explain the TGE phenomena, but it uses a mean value of parameter. 
 Improved model clarifies rough approximations of simple model, namely:
 \begin{itemize}
-	\item For generating electric field map used fractal model developed by Dr. Iudin; ~\cite{Iudin:2018}
+	\item For generating electric field map used fractal model developed by Dr. Iudin~\cite{Iudin:2018};
 	\item The photons cross-section and energy-angular distribution sampling  is computed exactly, for tracking used algorithm of maximal cross-section;
-	\item The spectrum of secondary particles from burned cell is simulated by GEANT4~\cite{ALLISON2016186}
+	\item The spectrum of secondary particles from burned cell is simulated by GEANT4~\cite{ALLISON2016186}.
 \end{itemize}
 
 Also we improved output simulation information and parallelized calculations. By now we conduct only first simulation with improved model and we can only say, that conclusion from simple model  was confirmed. For example Fig.~\ref{pic-electron-b} shows evolution of number of relativistic electron for a small time interval.
