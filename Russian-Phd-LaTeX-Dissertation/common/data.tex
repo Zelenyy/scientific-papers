@@ -1,0 +1,103 @@
+%%% Основные сведения %%%
+\newcommand{\thesisAuthorLastName}{Зелёный}
+\newcommand{\thesisAuthorOtherNames}{Михаил Евгеньвич}
+\newcommand{\thesisAuthorInitials}{М.\,Е.}
+\newcommand{\thesisAuthor}             % Диссертация, ФИО автора
+{%
+    \texorpdfstring{% \texorpdfstring takes two arguments and uses the first for (La)TeX and the second for pdf
+        \thesisAuthorLastName~\thesisAuthorOtherNames% так будет отображаться на титульном листе или в тексте, где будет использоваться переменная
+    }{%
+        \thesisAuthorLastName, \thesisAuthorOtherNames% эта запись для свойств pdf-файла. В таком виде, если pdf будет обработан программами для сбора библиографических сведений, будет правильно представлена фамилия.
+    }
+}
+\newcommand{\thesisAuthorShort}        % Диссертация, ФИО автора инициалами
+{\thesisAuthorInitials~\thesisAuthorLastName}
+%\newcommand{\thesisUdk}                % Диссертация, УДК
+%{\todo{xxx.xxx}}
+\newcommand{\thesisTitle}              % Диссертация, название
+{GEANT4 Монте-Карло моделирование атмосферных радиационных явлений (TGE и TGF) и детекторов элементарных частиц}
+\newcommand{\thesisSpecialtyNumber}    % Диссертация, специальность, номер
+{01.04.01}
+\newcommand{\thesisSpecialtyTitle}     % Диссертация, специальность, название (название взято с сайта ВАК для примера)
+{Приборы и методы экспериментальной физики}
+\newcommand{\thesisDegree}             % Диссертация, ученая степень
+{кандидата физико-математических наук}
+\newcommand{\thesisDegreeShort}        % Диссертация, ученая степень, краткая запись
+{канд. физ.-мат. наук}
+\newcommand{\thesisCity}               % Диссертация, город написания диссертации
+{Москва}
+\newcommand{\thesisYear}               % Диссертация, год написания диссертации
+{2020}
+\newcommand{\thesisOrganization}       % Диссертация, организация
+{Федеральное государственное бюджетное учреждение науки <<Институт ядерных исследований РАН>> <<ИЯИ РАН>>}
+\newcommand{\thesisOrganizationShort}  % Диссертация, краткое название организации для доклада
+{GEANT4 моделирование}
+
+\newcommand{\thesisInOrganization}     % Диссертация, организация в предложном падеже: Работа выполнена в ...
+{интституте ядерных исследований РАН}
+
+%% \newcommand{\supervisorDead}{}           % Рисовать рамку вокруг фамилии
+\newcommand{\supervisorFio}              % Научный руководитель, ФИО
+{Нозик Александр Аркадьевич}
+\newcommand{\supervisorRegalia}          % Научный руководитель, регалии
+{кандидат физико-математических наук}
+\newcommand{\supervisorFioShort}         % Научный руководитель, ФИО
+{А.\,А.~Нозик}
+\newcommand{\supervisorRegaliaShort}     % Научный руководитель, регалии
+{к. ф.-м. н.}
+
+\newcommand{\opponentOneFio}           % Оппонент 1, ФИО
+{\todo{Фамилия Имя Отчество}}
+\newcommand{\opponentOneRegalia}       % Оппонент 1, регалии
+{\todo{доктор физико-математических наук, профессор}}
+\newcommand{\opponentOneJobPlace}      % Оппонент 1, место работы
+{\todo{Не очень длинное название для места работы}}
+\newcommand{\opponentOneJobPost}       % Оппонент 1, должность
+{\todo{старший научный сотрудник}}
+
+\newcommand{\opponentTwoFio}           % Оппонент 2, ФИО
+{\todo{Фамилия Имя Отчество}}
+\newcommand{\opponentTwoRegalia}       % Оппонент 2, регалии
+{\todo{кандидат физико-математических наук}}
+\newcommand{\opponentTwoJobPlace}      % Оппонент 2, место работы
+{\todo{Основное место работы c длинным длинным длинным длинным названием}}
+\newcommand{\opponentTwoJobPost}       % Оппонент 2, должность
+{\todo{старший научный сотрудник}}
+
+%% \newcommand{\opponentThreeFio}         % Оппонент 3, ФИО
+%% {\todo{Фамилия Имя Отчество}}
+%% \newcommand{\opponentThreeRegalia}     % Оппонент 3, регалии
+%% {\todo{кандидат физико-математических наук}}
+%% \newcommand{\opponentThreeJobPlace}    % Оппонент 3, место работы
+%% {\todo{Основное место работы c длинным длинным длинным длинным названием}}
+%% \newcommand{\opponentThreeJobPost}     % Оппонент 3, должность
+%% {\todo{старший научный сотрудник}}
+
+%\newcommand{\leadingOrganizationTitle} % Ведущая организация, дополнительные строки. Удалить, чтобы не отображать в автореферате
+%{\todo{Федеральное государственное бюджетное образовательное учреждение высшего
+%профессионального образования с~длинным длинным длинным длинным названием}}
+
+\newcommand{\defenseDate}              % Защита, дата
+{\todo{DD mmmmmmmm YYYY~г.~в~XX часов}}
+\newcommand{\defenseCouncilNumber}     % Защита, номер диссертационного совета
+{\todo{Д\,123.456.78}}
+\newcommand{\defenseCouncilTitle}      % Защита, учреждение диссертационного совета
+{\todo{Название учреждения}}
+\newcommand{\defenseCouncilAddress}    % Защита, адрес учреждение диссертационного совета
+{\todo{Адрес}}
+\newcommand{\defenseCouncilPhone}      % Телефон для справок
+{\todo{+7~(0000)~00-00-00}}
+
+\newcommand{\defenseSecretaryFio}      % Секретарь диссертационного совета, ФИО
+{\todo{Фамилия Имя Отчество}}
+\newcommand{\defenseSecretaryRegalia}  % Секретарь диссертационного совета, регалии
+{\todo{д-р~физ.-мат. наук}}            % Для сокращений есть ГОСТы, например: ГОСТ Р 7.0.12-2011 + http://base.garant.ru/179724/#block_30000
+
+\newcommand{\synopsisLibrary}          % Автореферат, название библиотеки
+{\todo{Название библиотеки}}
+\newcommand{\synopsisDate}             % Автореферат, дата рассылки
+{\todo{DD mmmmmmmm YYYY года}}
+
+% To avoid conflict with beamer class use \providecommand
+\providecommand{\keywords}%            % Ключевые слова для метаданных PDF диссертации и автореферата
+{}
