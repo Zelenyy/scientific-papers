@@ -80,13 +80,6 @@
     	$$
     	F(z) = \frac{|t(E^{(1)}_0,z) - t(E^{(2)}_0,z)|}{t(E^{(1)}_0,z)} \to min
     	$$
-%	\begin{itemize}
-%		\item We can't defined Z if optical thickness $t$ is unknown.
-%		\item But we can use two electron beams with different energy which give gamma rays with up-limit energy $E^{(1)}_0$ and $E^{(2)}_0$.
-%		\item Then we can get Z as a result of minimizing this function:
-%		\item This technique allows to determine scan object as a one from four possible groups: $Z_{eff} \sim 5$, $Z_{eff} \sim 13$, $Z_{eff} \sim 26$, $Z_{eff} \sim 82$.
-%	\end{itemize}
-	
 \end{block}
 	\end{column}
 	\vline~
@@ -99,6 +92,8 @@
 		$E$ - energy of gamma ray\\
 		$Z$ - charge of nuclei 
 		%            \hline
+        
+        \includegraphics[width=1\textwidth]{scanner/Attenuation.pdf}
 	\end{column}
 \end{columns}  
 \end{frame}
@@ -118,6 +113,64 @@
 	Моделирование энергетического спектра гамма-квантов при облучении контейнера.
 \end{block}
 \end{frame}
+
+\begin{frame}
+\frametitle{Моделирования сканера транспортных контейнеров}
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \includegraphics[width=1\textwidth]{scanner/yed_schema_1.pdf}
+        \includegraphics[width=1\textwidth]{scanner/diffmat.pdf}
+    \end{column}
+    \vline~
+    \begin{column}{0.5\textwidth} 
+        \includegraphics[width=1\textwidth]{scanner/yed_schema_2.pdf}
+        \includegraphics[width=1\textwidth]{scanner/reconstruction.pdf}
+    \end{column}
+\end{columns}  
+\end{frame}
+
+
+
+\begin{frame}[plain, noframenumbering]
+\begin{center}
+    \Huge
+   Моделирование лавин релятивистских убегающих электронов в грозовой атмосфере
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{RL-TGE}
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \includegraphics[width=1\textwidth]{thunderstorm/01_Gurevich.pdf}
+        %        \includegraphics[width=1\textwidth]{thunderstorm/diffmat.pdf}
+    \end{column}
+    \vline~
+    \begin{column}{0.5\textwidth} 
+    \end{column}
+\end{columns}  
+\end{frame}
+
+
+\begin{frame}
+\frametitle{RL-TGE}
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        Затухание:
+        \includegraphics[width=1\textwidth]{thunderstorm/RL_Extinction.pdf}
+%        \includegraphics[width=1\textwidth]{thunderstorm/diffmat.pdf}
+    \end{column}
+    \vline~
+    \begin{column}{0.5\textwidth} 
+        TGE:
+        \includegraphics[width=1\textwidth]{thunderstorm/RL_proofTGE.pdf}
+        TGF:
+        \includegraphics[width=1\textwidth]{thunderstorm/RL_proofTGF.pdf}
+    \end{column}
+\end{columns}  
+\end{frame}
+
+
 
 %\note{
 %    Этот текст будет виден только если его отображение включено в файле \textbf{Presentation/setup}.
