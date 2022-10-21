@@ -1,0 +1,8 @@
+digraph schema_1{
+	A[label="PostrgeSQL Database"]
+	B[label="Smart Data Parser"]
+	C[label="JSON description"]
+	D[label="CSV&XML Files"]
+	D -> B -> A
+	C -> B
+}

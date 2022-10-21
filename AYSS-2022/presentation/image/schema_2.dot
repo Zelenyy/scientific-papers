@@ -1,0 +1,13 @@
+digraph schema_1{
+	A[label="PostrgeSQL Database"]
+	B[label="SQLite"]
+	C[label="MySQL"]
+	D[label="psycorg"]
+	E[label="sqlite"]
+	F[label="MySQL Connector/Python"]
+	G[label="Python Database API 2.0"]
+	H[label="SqlAlchemy"]
+	A -> D -> G -> H
+	B -> E -> G
+	C -> F -> G
+}

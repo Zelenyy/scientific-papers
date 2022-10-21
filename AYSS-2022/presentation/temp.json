@@ -1,0 +1,16 @@
+{
+  "table": "MPD",
+  "format": "CSV",
+  "CSV" : {
+    "header" : true
+  },
+  "columns": [
+    {
+      "name": "time",
+      "type": "datetime",
+      "type_properties": {
+        "datetime_flavour": "iso"
+      }
+    }
+  ]
+}
