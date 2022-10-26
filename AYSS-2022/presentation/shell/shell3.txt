@@ -1,0 +1,3 @@
+zelenyy$ smart-data-parser load -c config.json -s tests/data/detector_.json tests/data/detector_.csv
+Loading tests/data/detector_.csv: SUCCESS
+

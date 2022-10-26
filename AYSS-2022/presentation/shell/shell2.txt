@@ -1,0 +1,6 @@
+zelenyy$ smart-data-parser generate
+Generated file simulation_file.json for table simulation_file
+Generated file detector_parameter.json for table detector_parameter
+Generated file detector_.json for table detector_
+Generated file run_.json for table run_
+...

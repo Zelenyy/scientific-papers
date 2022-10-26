@@ -1,0 +1,11 @@
+postgres=> \dt
+               List of relations
+ Schema |        Name        | Type  |  Owner  
+--------+--------------------+-------+---------
+ public | detector_          | table | zelenyy
+ public | detector_parameter | table | zelenyy
+ public | parameter_         | table | zelenyy
+ public | run_               | table | zelenyy
+ public | run_geometry       | table | zelenyy
+ public | run_period         | table | zelenyy
+ public | simulation_file    | table | zelenyy

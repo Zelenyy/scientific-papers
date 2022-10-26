@@ -1,0 +1,14 @@
+{
+  "format": "CSV",
+  "table": "detector_",
+  "columns": [
+    {
+      "name": "detector_name",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    }
+  ]
+}
