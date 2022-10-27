@@ -1,5 +1,5 @@
 digraph schema_1{
-	A[label="PostrgeSQL Database"]
+	A[label="PostgreSQL Database"]
 	B[label="SQLite"]
 	C[label="MySQL"]
 	D[label="psycorg"]
@@ -7,7 +7,7 @@ digraph schema_1{
 	F[label="MySQL Connector/Python"]
 	G[label="Python Database API 2.0"]
 	H[label="SqlAlchemy"]
-	A -> D -> G -> H
-	B -> E -> G
-	C -> F -> G
+	H -> G -> D -> A
+	G -> E -> B
+	G -> C -> F
 }
